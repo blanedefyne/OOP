@@ -1,9 +1,9 @@
 import java.util.Arrays;
 
 /**
- Пирамидальная сортировка (сортировка кучей)
- */
-public class heapsort {
+ Пирамидальная сортировка (сортировка кучей).
+*/
+public class Heapsort {
 
     /**
      * @param arr - our array we need to sort
@@ -11,14 +11,14 @@ public class heapsort {
      * @param index - inner vertex we work with
      */
     public static void heapify(int[] arr, int length, int index) {
-        int lChild = index * 2 + 1;
-        int rChild = index * 2 + 2;
+        int leftChild = index * 2 + 1;
+        int rightChild = index * 2 + 2;
         int max = index;
-        if (lChild < length && arr[lChild] > arr[max]) {
-            max = lChild;
+        if (leftChild < length && arr[leftChild] > arr[max]) {
+            max = leftChild;
         }
-        if (rChild < length && arr[rChild] > arr[max]) {
-            max = rChild;
+        if (rightChild < length && arr[rightChild] > arr[max]) {
+            max = rightChild;
         }
 
         if (max != index) { /* if we found a child with bigger value than its parent*/
