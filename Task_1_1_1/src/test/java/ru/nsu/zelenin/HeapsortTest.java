@@ -35,7 +35,7 @@ class HeapsortTest {
         int[] array = new int[n];
         Random random = new Random();
 
-        for(int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; ++i) {
             array[i] = random.nextInt(1000000);
         }
 

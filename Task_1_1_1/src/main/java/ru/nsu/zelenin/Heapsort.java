@@ -45,11 +45,11 @@ public class Heapsort {
             return new int[0];
         } else {
             int i;
-            for(i = arr.length / 2 - 1; i >= 0; --i) {
+            for (i = arr.length / 2 - 1; i >= 0; --i) {
                 heapify(arr, arr.length, i);
             }
 
-            for(i = arr.length - 1; i >= 0; --i) {
+            for (i = arr.length - 1; i >= 0; --i) {
                 int temp = arr[i];
                 arr[i] = arr[0];
                 arr[0] = temp;
