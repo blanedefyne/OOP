@@ -14,6 +14,12 @@ class HeapsortTest {
     }
 
     @Test
+    public void sortedArray() {
+        Assertions.assertArrayEquals(new int[] {-10, -1, 2, 4, 5, 8, 12, 23, 90, 105},
+                Heapsort.heapSort(new int[] {-10, -1, 2, 4, 5, 8, 12, 23, 90, 105}));
+    }
+
+    @Test
     public void emptyArr() {
         Assertions.assertArrayEquals(new int[0],
                 Heapsort.heapSort(new int[0]));
