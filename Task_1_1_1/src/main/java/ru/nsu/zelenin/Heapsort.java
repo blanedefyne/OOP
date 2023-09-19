@@ -3,7 +3,6 @@ package ru.nsu.zelenin;
 /**
  * Пирамидальная сортировка (сортировка кучей).
  */
-
 public class Heapsort {
 
     /** heapify method sifts down vertex on its right position.
@@ -12,8 +11,7 @@ public class Heapsort {
      * @param length - length of that array
      * @param index - inner vertex we work with
      */
-
-    public static void heapify(int[] arr, int length, int index) {
+    static void heapify(int[] arr, int length, int index) {
         int leftChild = index * 2 + 1;
         int rightChild = index * 2 + 2;
         int max = index;
@@ -39,10 +37,9 @@ public class Heapsort {
      * @param arr - initial array
      * @return - method returns sorted array
      */
-
     public static int[] heapSort(int[] arr) {
         if (arr.length == 0) {
-            return new int[0];
+            return arr;
         } else {
             int i;
             for (i = arr.length / 2 - 1; i >= 0; --i) {
@@ -64,7 +61,6 @@ public class Heapsort {
      *
      * @param args - common main method parameters
      */
-
     public static void main(String[] args) {
     }
 }
