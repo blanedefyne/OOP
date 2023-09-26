@@ -37,7 +37,7 @@ class HeapsortTest {
                    Heapsort.heapSort(new int[]{1994}));
     }
 
-    public static int[] generateRandomArray(int n) {
+    private static int[] generateRandomArray(int n) {
         int[] array = new int[n];
         Random random = new Random();
 
@@ -51,8 +51,9 @@ class HeapsortTest {
     @Test
     public void oneMillion() {
         int[] myArray = generateRandomArray(1000000);
+        int[] myCopy = Arrays.copyOf(myArray, 1000000);
         Arrays.sort(myArray);
-        int[] mySecondArray = Heapsort.heapSort(myArray);
+        int[] mySecondArray = Heapsort.heapSort(myCopy);
         Assertions.assertArrayEquals(myArray, Heapsort.heapSort(mySecondArray));
     }
 }
