@@ -1,6 +1,8 @@
 package ru.nsu.zelenin;
+
 import java.util.Arrays;
-import static java.lang.Math.max;
+
+import java.lang.Math;
 
 /**
  * Polynomial class - the name speaks for itself.
@@ -9,7 +11,7 @@ public class Polynomial {
 
     public double[] coArray;
 
-    /** Polynomial constructor - creates a polynomial from an array
+    /** Polynomial constructor - creates a polynomial from an array.
      *
      * @param coArray - array we want to turn into a polynomial
      * when creating, we consider possible zeros in the end of array
@@ -33,7 +35,8 @@ public class Polynomial {
 
     }
 
-    /**
+    /** plus method - adds 2 polynomials.
+     *
      * @param p - second polynomial we want to add to
      * the polynomial the method was called from
      * @return new resulting polynomial - sum of 2
@@ -41,9 +44,10 @@ public class Polynomial {
     public Polynomial plus(Polynomial p) {
         int lengthPol1 = this.coArray.length;
         int lengthPol2 = p.coArray.length;
-        int maxDegree = max(lengthPol1, lengthPol2);
+        int maxDegree = Math.max(lengthPol1, lengthPol2);
         double[] res = new double[maxDegree];
-        double firstCoeff, secondCoeff;
+        double firstCoeff;
+        double secondCoeff;
 
         for (int i = 0; i < maxDegree; ++i) {
             firstCoeff = i < lengthPol1 ? this.coArray[i] : 0;
@@ -54,18 +58,18 @@ public class Polynomial {
 
     }
 
-    /**
-     * almost the same method, but it subtracts one polynomial
-     * from another
+    /** minus method - subtracts 2 polynomials.
+     *
      * @param p - polynomial we subtract
      * @return - new resulting polynomial - difference of 2
      */
     public Polynomial minus(Polynomial p) {
         int lengthPol1 = this.coArray.length;
         int lengthPol2 = p.coArray.length;
-        int maxDegree = max(lengthPol1, lengthPol2);
+        int maxDegree = Math.max(lengthPol1, lengthPol2);
         double[] res = new double[maxDegree];
-        double firstCoeff, secondCoeff;
+        double firstCoeff;
+        double secondCoeff;
 
         for (int i = 0; i < maxDegree; ++i) {
             firstCoeff = i < lengthPol1 ? this.coArray[i] : 0;
@@ -76,8 +80,8 @@ public class Polynomial {
 
     }
 
-    /**
-     * method that multiply 2 polynomials
+    /** times method - multiplying 2 polynomials.
+     *
      * @param p - polynomial we multiply on
      * @return new resulting polynomial
      */
@@ -95,7 +99,7 @@ public class Polynomial {
         return (new Polynomial(res));
     }
 
-    /**
+    /** evaluate - getting a value setting a number in polynomial.
      *
      * @param value - the value we want to set in our polynomial
      * @return double number - result of substitution
@@ -111,7 +115,7 @@ public class Polynomial {
         return res;
     }
 
-    /**
+    /** differentiate - getting a derivative.
      *
      * @param order - the order of the derivative
      * @return new resulting polynomial - the derivative of (order) order
@@ -136,7 +140,7 @@ public class Polynomial {
         }
     }
 
-    /**
+    /** equals - overriding.
      *
      * @param o - (polynomial) object we will compare to our instance
      * @return boolean value - is one polynomial equal to another
@@ -149,8 +153,8 @@ public class Polynomial {
         return Arrays.equals(coArray, that.coArray);
     }
 
-    /**
-     * hashCode method
+    /** hashCode - overriding.
+     *
      * @return hashCode of an array of our polynomial
      */
     @Override
@@ -158,8 +162,8 @@ public class Polynomial {
         return Arrays.hashCode(coArray);
     }
 
-    /**
-     * toString method
+    /** toString() method - represents given polynomial as a string.
+     *
      * @return string representing of given polynomial
      */
     @Override
@@ -189,23 +193,29 @@ public class Polynomial {
             }
             else {
                 sign = this.coArray[i] > 0;
-                if (sign)
+                if (sign) {
                     res.append(" + ");
-                else
+                }
+                else {
                     res.append(" - ");
+                }
 
-                if (this.coArray[i] != 1)
-                    if (sign)
+                if (this.coArray[i] != 1) {
+                    if (sign) {
                         res.append(this.coArray[i]);
-                    else
+                    }
+                    else {
                         res.append(-this.coArray[i]);
+                    }
+                }
 
                 if (i != 1) {
                     res.append("x^");
                     res.append(i);
                 }
-                else
+                else {
                     res.append("x");
+                }
             }
         }
 
@@ -213,7 +223,7 @@ public class Polynomial {
             res.append(" + ");
             res.append(this.coArray[0]);
         }
-        else if (this.coArray[0] < 0){
+        else if (this.coArray[0] < 0) {
             res.append(" - ");
             res.append(-this.coArray[0]);
         }
