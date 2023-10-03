@@ -79,5 +79,4 @@ public class PolynomialTest {
                 p1.plus(p1.differentiate(2)).toString());
     }
 
-
 }

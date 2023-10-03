@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Polynomial {
 
-    public double[] coArray;
+    private final double[] coArray;
 
     /**
      * Polynomial constructor - creates a polynomial from an array.
