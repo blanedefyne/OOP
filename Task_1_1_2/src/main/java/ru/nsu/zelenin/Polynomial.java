@@ -55,7 +55,7 @@ public class Polynomial {
             secondCoeff = i < lengthPol2 ? p.coArray[i] : 0;
             res[i] = firstCoeff + secondCoeff;
         }
-        return (new Polynomial(res));
+        return new Polynomial(res);
 
     }
 
@@ -78,7 +78,7 @@ public class Polynomial {
             secondCoeff = i < lengthPol2 ? p.coArray[i] : 0;
             res[i] = firstCoeff - secondCoeff;
         }
-        return (new Polynomial(res));
+        return new Polynomial(res);
 
     }
 
@@ -99,7 +99,7 @@ public class Polynomial {
                 res[i + j] += this.coArray[i] * p.coArray[j];
             }
         }
-        return (new Polynomial(res));
+        return new Polynomial(res);
     }
 
     /**
@@ -140,7 +140,7 @@ public class Polynomial {
                 }
                 temp = res;
             }
-            return (new Polynomial(temp));
+            return new Polynomial(temp);
         }
     }
 
@@ -188,52 +188,58 @@ public class Polynomial {
             return res.toString();
         }
 
-        if (this.coArray[maxDegree] != 1) {
-            res.append(this.coArray[maxDegree]);
-        }
-        if (maxDegree != 1) {
-            res.append("x^");
-            res.append(maxDegree);
-        } else {
-            res.append("x");
-        }
+        firstSigns(maxDegree, res);
+        mainSigns(maxDegree, res);
+        lastSigns(res);
+        return res.toString();
+    }
 
-        for (int i = maxDegree - 1; i > 0; i--) {
-            if (this.coArray[i] == 0) {
-                continue;
-            } else {
-                sign = this.coArray[i] > 0;
+    private void firstSigns(int degree, StringBuilder array) {
+        if (this.coArray[degree] != 1) {
+            array.append(this.coArray[degree]);
+        }
+        if (degree != 1) {
+            array.append("x^");
+            array.append(degree);
+        } else {
+            array.append("x");
+        }
+    }
+    private void mainSigns(int degree, StringBuilder array) {
+        for (int i = degree - 1; i > 0; i--) {
+            if (this.coArray[i] != 0) {
+                boolean sign = this.coArray[i] > 0;
                 if (sign) {
-                    res.append(" + ");
+                    array.append(" + ");
                 } else {
-                    res.append(" - ");
+                    array.append(" - ");
                 }
 
                 if (this.coArray[i] != 1) {
                     if (sign) {
-                        res.append(this.coArray[i]);
+                        array.append(this.coArray[i]);
                     } else {
-                        res.append(-this.coArray[i]);
+                        array.append(-this.coArray[i]);
                     }
                 }
 
                 if (i != 1) {
-                    res.append("x^");
-                    res.append(i);
+                    array.append("x^");
+                    array.append(i);
                 } else {
-                    res.append("x");
+                    array.append("x");
                 }
             }
         }
-
+    }
+    private void lastSigns(StringBuilder array) {
         if (this.coArray[0] > 0) {
-            res.append(" + ");
-            res.append(this.coArray[0]);
+            array.append(" + ");
+            array.append(this.coArray[0]);
         } else if (this.coArray[0] < 0) {
-            res.append(" - ");
-            res.append(-this.coArray[0]);
+            array.append(" - ");
+            array.append(-this.coArray[0]);
         }
-        return res.toString();
     }
 
 }

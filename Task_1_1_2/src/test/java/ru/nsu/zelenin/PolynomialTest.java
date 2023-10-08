@@ -65,9 +65,9 @@ public class PolynomialTest {
         Polynomial p1 = new Polynomial(new double[]{5, -9, 14, -14, 21, 0, 0, 12, 11});
         Polynomial p2 = new Polynomial(new double[]{-3, 0, -36, 140, 1, -9});
         Assertions.assertEquals(new Polynomial(new double[]
-                        {-15, 27, -222, 1066, -1822, 2410, -2621,
-                                2764, 114, -621, 1284, 1552, -97, -99}),
-                p1.times(p2));
+        {-15, 27, -222, 1066, -1822, 2410, -2621,
+            2764, 114, -621, 1284, 1552, -97, -99}),
+        p1.times(p2));
     }
 
     @Test
