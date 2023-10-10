@@ -67,7 +67,7 @@ public class PolynomialTest {
         Assertions.assertEquals(new Polynomial(new double[]
         {-15, 27, -222, 1066, -1822, 2410, -2621,
             2764, 114, -621, 1284, 1552, -97, -99}),
-        p1.times(p2));
+            p1.times(p2));
     }
 
     @Test

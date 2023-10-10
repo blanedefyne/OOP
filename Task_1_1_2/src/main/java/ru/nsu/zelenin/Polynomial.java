@@ -205,6 +205,7 @@ public class Polynomial {
             array.append("x");
         }
     }
+
     private void mainSigns(int degree, StringBuilder array) {
         for (int i = degree - 1; i > 0; i--) {
             if (this.coArray[i] != 0) {
@@ -232,6 +233,7 @@ public class Polynomial {
             }
         }
     }
+
     private void lastSigns(StringBuilder array) {
         if (this.coArray[0] > 0) {
             array.append(" + ");
