@@ -2,7 +2,7 @@ package ru.nsu.zelenin;
 
 /**
  * Пирамидальная сортировка (сортировка кучей).
- */
+ */ 
 public class Heapsort {
 
     /** heapify method sifts down vertex on its right position.
