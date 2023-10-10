@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.zelenin.HeapsortTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-10-01T16:22:13" hostname="LAPTOP-976S9D2V" time="0.567">
+  <properties/>
+  <testcase name="singleArray()" classname="ru.nsu.zelenin.HeapsortTest" time="0.038"/>
+  <testcase name="defaultArray()" classname="ru.nsu.zelenin.HeapsortTest" time="0.001"/>
+  <testcase name="oneMillion()" classname="ru.nsu.zelenin.HeapsortTest" time="0.519"/>
+  <testcase name="emptyArr()" classname="ru.nsu.zelenin.HeapsortTest" time="0.001"/>
+  <testcase name="biggerArray()" classname="ru.nsu.zelenin.HeapsortTest" time="0.001"/>
+  <testcase name="sortedArray()" classname="ru.nsu.zelenin.HeapsortTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
