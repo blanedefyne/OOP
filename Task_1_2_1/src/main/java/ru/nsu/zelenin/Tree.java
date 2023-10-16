@@ -1,6 +1,12 @@
 package ru.nsu.zelenin;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
 
 /** Tree class implementing Iterable interface.
  *
@@ -27,7 +33,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      */
     public Tree<T> addChild(T child) {
         this.modified = true; //if any subtree of a "main" tree is modified
-        AllTreeIsModified(); //then the "main" tree itself is modified
+        wholeTreeIsModified(); //then the "main" tree itself is modified
         Tree<T> newTree = new Tree<>(child);
         newTree.parent = this;
         this.children.add(newTree);
@@ -41,7 +47,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      */
     public Tree<T> addChild(Tree<T> subtree) {
         this.modified = true;
-        AllTreeIsModified();
+        wholeTreeIsModified();
         subtree.parent = this;
         this.children.add(subtree);
         return subtree;
@@ -53,7 +59,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
     public void remove() {
         this.value = null;
         this.modified = true;
-        AllTreeIsModified();
+        wholeTreeIsModified();
         if (this.parent != null) {
             this.parent.children.remove(this);
             this.parent = null;
@@ -67,7 +73,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      * method goes up to its parent and set parent.modified to true
      * and over again until the parent is null (what means we are in root)
      */
-    private void AllTreeIsModified() {
+    private void wholeTreeIsModified() {
         if (!this.modified) {
             return;
         }
@@ -116,12 +122,12 @@ public class Tree<T> implements Iterable<Tree<T>> {
         }
 
         for (int i = 0; i < this.children.size(); ++i) {
-            if (!(tree.children.contains(this.children.get(i)) &&
-                    this.children.contains(tree.children.get(i)))) {
+            if (!(tree.children.contains(this.children.get(i))
+                    && this.children.contains(tree.children.get(i)))) {
                 return false;
             }
         }
-        return Objects.equals(this.value, tree.value);// && children.equals(tree.children);
+        return Objects.equals(this.value, tree.value); // && children.equals(tree.children);
     }
 
     /** hashCode() method override.
@@ -216,26 +222,26 @@ public class Tree<T> implements Iterable<Tree<T>> {
 
     }
 
-    /** iteratorBFS() - iteration is in BFS-search order.
+    /** iteratorBfs() - iteration is in BFS-search order.
      *
      * @return Iterator of our tree
      */
-    public Iterator<Tree<T>> iteratorBFS() {
-        return new TreeIteratorBFS();
+    public Iterator<Tree<T>> iteratorBfs() {
+        return new TreeIteratorBfs();
     }
 
     /**
-     * private TreeIteratorBFS class - so we can iterate using BFS.
+     * private TreeIteratorBfs class - so we can iterate using BFS.
      */
-    private class TreeIteratorBFS implements Iterator<Tree<T>>{
+    private class TreeIteratorBfs implements Iterator<Tree<T>> {
         private final List<Tree<T>> order = new ArrayList<>();
         private int idx = 0;
 
-        /** TreeIteratorBFS constructor.
+        /** TreeIteratorBfs constructor.
          * only sets modified to false
          * and starts bfs method
          */
-        public TreeIteratorBFS() {
+        public TreeIteratorBfs() {
             modified = false;
             bfs(Tree.this);
         }

@@ -1,8 +1,8 @@
 package ru.nsu.zelenin;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -113,7 +113,7 @@ public class TreeTest {
         int[] checkArray = new int[8];
         int i = 0;
 
-        for (Iterator<Tree<Integer>> tree = mine.iteratorBFS(); tree.hasNext();) {
+        for (Iterator<Tree<Integer>> tree = mine.iteratorBfs(); tree.hasNext();) {
             checkArray[i++] = tree.next().getValue();
         }
 
@@ -122,22 +122,19 @@ public class TreeTest {
 
     @Test
     public void treesEquals() {
-        Tree<String> myTree = new Tree<>("T");
-        myTree.addChild("o");
-        var a = myTree.addChild("b");
-        myTree.addChild("i");
-        Tree<String> subtree = new Tree<>("Doesn't");
-        subtree.addChild("seem");
-        var b = subtree.addChild("to");
-        b.addChild("matter");
-        var c = subtree.addChild("what");
-        c.addChild("i do");
-        c.addChild("i'm always number 2");
-        a.addChild(subtree);
-        Tree<String> myTreeClone = new Tree<>("T");
-        myTreeClone.addChild("o");
-        myTreeClone.addChild("i");
-        a.remove();
+        Tree<String> myTree = new Tree<>("time shakes");
+        myTree.addChild("found you in the water");
+        myTree.addChild("at first you were my father");
+        myTree.addChild("and now i love you like a brother");
+        Tree<String> myTreeClone = new Tree<>("time shakes");
+        myTreeClone.addChild("found you in the water");
+        var b = myTreeClone.addChild("at first you were my father");
+        myTreeClone.addChild("and now i love you like a brother");
+        var c = b.addChild("earthquakes shake the dust behind you");
+        Tree<String> subtree = new Tree<>("this world at times will blind you");
+        subtree.addChild("still i know i'll see you there");
+        c.addChild(subtree);
+        c.remove();
 
         assertEquals(myTree, myTreeClone);
     }
@@ -184,7 +181,7 @@ public class TreeTest {
 
         mytree.remove();
 
-        for (Iterator<Tree<String>> tree = mytree.iteratorBFS(); tree.hasNext();) {
+        for (Iterator<Tree<String>> tree = mytree.iteratorBfs(); tree.hasNext();) {
             res.add(tree.next().getValue());
         }
 
@@ -208,7 +205,7 @@ public class TreeTest {
         myTree.addChild("way back, way back, way back!");
 
         assertThrows(ConcurrentModificationException.class, () -> {
-            for (Iterator<Tree<String>> tree = myTree.iteratorBFS(); tree.hasNext();) {
+            for (Iterator<Tree<String>> tree = myTree.iteratorBfs(); tree.hasNext();) {
                 a.remove();
             }
         });
@@ -225,7 +222,7 @@ public class TreeTest {
         myTree.addChild("oooh oooh");
 
         assertThrows(ConcurrentModificationException.class, () -> {
-            for (Iterator<Tree<String>> tree = myTree.iteratorBFS(); tree.hasNext();) {
+            for (Iterator<Tree<String>> tree = myTree.iteratorBfs(); tree.hasNext();) {
                 myTree.addChild("even on a cloudy day i'll keep my eyes fixed on the ground");
             }
         });
