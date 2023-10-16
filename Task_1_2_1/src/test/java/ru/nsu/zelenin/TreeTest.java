@@ -1,13 +1,15 @@
 package ru.nsu.zelenin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing Tree class and its methods.
@@ -38,7 +40,7 @@ public class TreeTest {
     }
 
     @Test
-    public void catchAnExceptionWhileAddingDFS() {
+    public void catchAnExceptionWhileAddingDfs() {
         Tree<String> myTree = new Tree<>("i think it's strange");
         myTree.addChild("when people say");
         myTree.addChild("you're the next big thing");
@@ -46,7 +48,7 @@ public class TreeTest {
         a.addChild("the slightest touch, forced to fold");
         a.addChild("sleight of the hand, modern gold");
 
-        assertThrows(ConcurrentModificationException.class,() -> {
+        assertThrows(ConcurrentModificationException.class, () -> {
             for (Tree<String> tree : myTree) {
                 myTree.addChild("oops");
             }
@@ -54,7 +56,7 @@ public class TreeTest {
     }
 
     @Test
-    public void catchAnExceptionWhileRemovingDFS() {
+    public void catchAnExceptionWhileRemovingDfs() {
         Tree<String> myTree = new Tree<>("tonight i'll have a look");
         var a = myTree.addChild("and try to find my face again");
         a.addChild("buried beneath this house");
@@ -69,7 +71,7 @@ public class TreeTest {
         d.addChild("i want to get away, i need to get away");
         d.addChild(subtree);
 
-        assertThrows(ConcurrentModificationException.class,() -> {
+        assertThrows(ConcurrentModificationException.class, () -> {
             for (Tree<String> tree : myTree) {
                 a.remove();
             }
@@ -141,11 +143,16 @@ public class TreeTest {
     }
 
     @Test
-    public void emptyTreeIteration() {
-        Tree<String> mytree = new Tree<>("each");
-        mytree.addChild("breath");
-        var a = mytree.addChild("i left");
-        a.addChild("behind");
+    public void emptyTreeIterationDfs() {
+        Tree<String> mytree = new Tree<>("when everyone");
+        mytree.addChild("you thought you knew");
+        var a = mytree.addChild("deserts your fight");
+        a.addChild("i'll go with you");
+        a.addChild("you're facing down");
+        mytree.addChild("a dark hall");
+        mytree.addChild("i'll grab my light");
+        a.addChild("and go with you...");
+
         List<String> res = new ArrayList<>();
 
         mytree.remove();
@@ -158,7 +165,35 @@ public class TreeTest {
     }
 
     @Test
-    public void catchAnExceptionWhileRemovingBFS() {
+    public void emptyTreeIterationBfs() {
+        Tree<String> mytree = new Tree<>("we were at the table by the window of view");
+        mytree.addChild("casting shadows, the sun was pushing through");
+        var a = mytree.addChild("spoke a lot of words, i don't know if i spoke the truth");
+        a.addChild("got so much to lose");
+        a.addChild("got so much to prove");
+        a.addChild("God, don't let me lose my mind");
+        var b = mytree.addChild("trouble on my left, trouble on my right");
+        b.addChild("i've been facing troubles almost all my life");
+        b.addChild("my sweet love, won't you pull me through?");
+        b.addChild("everywhere i look, i catch a glimpse of you");
+        b.addChild("i said it was love and i did it for life, didn't do it for you");
+        mytree.addChild("ooh, ooh-ooh");
+        mytree.addChild("ooh-ooh");
+
+        List<String> res = new ArrayList<>();
+
+        mytree.remove();
+
+        for (Iterator<Tree<String>> tree = mytree.iteratorBFS(); tree.hasNext();) {
+            res.add(tree.next().getValue());
+        }
+
+        assertEquals(new ArrayList<>(), res);
+
+    }
+
+    @Test
+    public void catchAnExceptionWhileRemovingBfs() {
         Tree<String> myTree = new Tree<>("i've been trying real hard");
         var a = myTree.addChild("to, to realise");
         a.addChild("but some thing take a long, long");
@@ -172,7 +207,7 @@ public class TreeTest {
         a.addChild("aberdeen!");
         myTree.addChild("way back, way back, way back!");
 
-        assertThrows(ConcurrentModificationException.class,() -> {
+        assertThrows(ConcurrentModificationException.class, () -> {
             for (Iterator<Tree<String>> tree = myTree.iteratorBFS(); tree.hasNext();) {
                 a.remove();
             }
@@ -180,7 +215,7 @@ public class TreeTest {
     }
 
     @Test
-    public void catchAnExceptionWhileAddingBFS() {
+    public void catchAnExceptionWhileAddingBfs() {
         Tree<String> myTree = new Tree<>("shake me down");
         var a = myTree.addChild("not a lot of people left around");
         a.addChild("who knows now");
@@ -189,11 +224,13 @@ public class TreeTest {
         d.addChild("not a lot of people left around");
         myTree.addChild("oooh oooh");
 
-        assertThrows(ConcurrentModificationException.class,() -> {
+        assertThrows(ConcurrentModificationException.class, () -> {
             for (Iterator<Tree<String>> tree = myTree.iteratorBFS(); tree.hasNext();) {
                 myTree.addChild("even on a cloudy day i'll keep my eyes fixed on the ground");
             }
         });
     }
+
+
 
 }
