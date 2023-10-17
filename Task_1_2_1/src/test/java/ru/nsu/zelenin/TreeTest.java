@@ -113,8 +113,8 @@ public class TreeTest {
         int[] checkArray = new int[8];
         int i = 0;
 
-        for (Iterator<Tree<Integer>> tree = mine.iteratorBfs(); tree.hasNext();) {
-            checkArray[i++] = tree.next().getValue();
+        for (var treeIterator = mine.iteratorBfs(); treeIterator.hasNext();) {
+            checkArray[i++] = treeIterator.next().getValue();
         }
 
         assertArrayEquals(new int[] {1, 2, 5, 3, 4, 6, 7, 8}, checkArray);
@@ -154,8 +154,8 @@ public class TreeTest {
 
         mytree.remove();
 
-        for (Tree<String> tree : mytree) {
-            res.add(tree.getValue());
+        for (Tree<String> treeIterator : mytree) {
+            res.add(treeIterator.getValue());
         }
 
         assertEquals(new ArrayList<>(), res);
@@ -181,8 +181,8 @@ public class TreeTest {
 
         mytree.remove();
 
-        for (Iterator<Tree<String>> tree = mytree.iteratorBfs(); tree.hasNext();) {
-            res.add(tree.next().getValue());
+        for (var treeIterator = mytree.iteratorBfs(); treeIterator.hasNext();) {
+            res.add(treeIterator.next().getValue());
         }
 
         assertEquals(new ArrayList<>(), res);
@@ -205,7 +205,7 @@ public class TreeTest {
         myTree.addChild("way back, way back, way back!");
 
         assertThrows(ConcurrentModificationException.class, () -> {
-            for (Iterator<Tree<String>> tree = myTree.iteratorBfs(); tree.hasNext();) {
+            for (var treeIterator = myTree.iteratorBfs(); treeIterator.hasNext();) {
                 a.remove();
             }
         });
@@ -228,6 +228,20 @@ public class TreeTest {
         });
     }
 
+    @Test
+    public void whyDoWeNeedModCount() {
+        Tree<String> myTree = new Tree<>("sun went down, sun went down");
+        var c = myTree.addChild("over Pompeii");
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (Iterator<Tree<String>> tree = myTree.iteratorBfs(); tree.hasNext();) {
+                myTree.addChild("on both sides, a vow was broken");
+                for (var subtree : myTree) {
+                    System.out.print("");
+                }
+            }
+        });
+    }
 
 
 }
