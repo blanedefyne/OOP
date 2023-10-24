@@ -132,7 +132,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(value, children);
+        return Objects.hash(value, new HashSet<>(children));
     }
 
     /** iterator() method override.
