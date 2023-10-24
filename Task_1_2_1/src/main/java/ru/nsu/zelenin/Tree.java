@@ -122,8 +122,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
             return false;
         }
         return Objects.equals(this.value, tree.value)
-                && new HashSet<>(tree.children).containsAll(this.children)
-                && new HashSet<>(this.children).containsAll(tree.children);
+                && new HashSet<>(this.children).equals(new HashSet<>(tree.children));
     }
 
     /** hashCode() method override.
