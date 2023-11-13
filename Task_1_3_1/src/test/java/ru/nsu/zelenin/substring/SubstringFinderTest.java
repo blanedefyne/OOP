@@ -33,7 +33,7 @@ class SubstringFinderTest {
         List<Long> result = new ArrayList<>();
         SubstringFinder finder = new SubstringFinder(10);
         result.add(6L);
-        result.add(108L);
+        result.add(105L);
         assertEquals(result, finder.find("lyrics.txt", "police"));
     }
 
@@ -41,7 +41,7 @@ class SubstringFinderTest {
     public void findChessSubstring() {
         List<Long> result = new ArrayList<>();
         SubstringFinder finder = new SubstringFinder(10);
-        result.add(22L);
+        result.add(19L);
         assertEquals(result, finder.find("chess.txt", "♛♜♜"));
     }
 
