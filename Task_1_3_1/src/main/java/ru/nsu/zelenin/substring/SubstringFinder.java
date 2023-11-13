@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +20,7 @@ import java.util.Objects;
 
 public class SubstringFinder {
     /**
+     * Describing all the fields.
      * bufLen - length of our buffer
      * buffer - the buffer itself
      * storedBuffer - second buffer, we will use both (concatenated)
@@ -29,8 +30,9 @@ public class SubstringFinder {
      * stIndex - start index of our substring entry
      * subPointer - index for our substring
      * inSubString - just boolean flag
-     * i - "global index" - how many symbols we read at all
+     * idx - "global index" - how many symbols we read at all
      */
+
     private int bufLen;
     private char[] buffer;
     private char[] storedBuffer;
@@ -39,7 +41,7 @@ public class SubstringFinder {
     private long stIndex = 0;
     private int subPointer = 0;
     private boolean inSubString = false;
-    private long i = 0;
+    private long idx = 0;
 
     /**
      * Class constructor.
@@ -60,7 +62,7 @@ public class SubstringFinder {
     public void setBufLen(int newLen) {
         this.bufLen = newLen;
         this.readBuffers = 0;
-        this.i = 0;
+        this.idx = 0;
         this.inSubString = false;
         this.stIndex = 0;
         this.subPointer = 0;
@@ -118,27 +120,27 @@ public class SubstringFinder {
         }
         char[] workingBuffer = (new String(storedBuffer) + new String(buffer)).toCharArray();
         int workLen = workingBuffer.length;
-        while (i - bufLen * (readBuffers - 1) < workLen) {
-            if (workingBuffer[(int) (i - bufLen * (readBuffers - 1))]
+        while (idx - bufLen * (readBuffers - 1) < workLen) {
+            if (workingBuffer[(int) (idx - bufLen * (readBuffers - 1))]
                     == subString.charAt(subPointer++)) {
                 if (!inSubString) {
-                    stIndex = i;
+                    stIndex = idx;
                     inSubString = true;
                 }
                 if (subPointer == subString.length()) {
                     res.add(stIndex);
                     subPointer = 0;
                     inSubString = false;
-                    i = stIndex;
+                    idx = stIndex;
                 }
             } else {
                 if (inSubString) {
                     inSubString = false;
-                    i = stIndex;
+                    idx = stIndex;
                 }
                 subPointer = 0;
             }
-            i++;
+            idx++;
         }
         storedBuffer = Arrays.copyOf(buffer, bufLen);
     }

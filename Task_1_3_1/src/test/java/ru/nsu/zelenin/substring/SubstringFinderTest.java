@@ -1,21 +1,22 @@
 package ru.nsu.zelenin.substring;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SubstringFinderTest {
 
     @Test
     public void findRepeatingString() {
         List<Long> result = new ArrayList<>();
-        SubstringFinder finder = new SubstringFinder(2);
         result.add(0L);
         result.add(1L);
         result.add(2L);
         result.add(3L);
+        SubstringFinder finder = new SubstringFinder(2);
         assertEquals(result, finder.find("aaaaa.txt", "aa"));
     }
 
@@ -24,7 +25,7 @@ class SubstringFinderTest {
         List<Long> result = new ArrayList<>();
         SubstringFinder finder = new SubstringFinder(1);
         result.add(6L);
-        assertEquals(result, finder.find("japanese.txt","ていま"));
+        assertEquals(result, finder.find("japanese.txt", "ていま"));
     }
 
     @Test
