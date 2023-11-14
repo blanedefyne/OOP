@@ -30,7 +30,7 @@ public class SubstringFinder {
      * stIndex - start index of our substring entry
      * subPointer - index for our substring
      * inSubString - just boolean flag
-     * idx - "global index" 
+     * idx - "global index"
      */
 
     private int bufLen;
@@ -84,6 +84,7 @@ public class SubstringFinder {
              InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(is),
                      StandardCharsets.UTF_8)
         ) {
+            int findLimit = 100000;
 
             byte[] arr = subStr.getBytes();
             String subString = new String(arr, StandardCharsets.UTF_8);
@@ -93,15 +94,14 @@ public class SubstringFinder {
                 bufLen = subString.length();
             }
             buffer = new char[bufLen];
-            try {
-                while ((readCount = reader.read(buffer)) != -1) {
-                    findAnswer(subString, res);
-                    readBuffers++;
+            while ((readCount = reader.read(buffer)) != -1) {
+                findAnswer(subString, res);
+                readBuffers++;
+                if (res.size() >= findLimit) {
+                    break;
                 }
-                return res;
-            } catch (OutOfMemoryError e) {
-                return res;
             }
+            return res;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
