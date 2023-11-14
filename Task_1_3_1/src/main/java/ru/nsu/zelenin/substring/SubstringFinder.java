@@ -30,7 +30,7 @@ public class SubstringFinder {
      * stIndex - start index of our substring entry
      * subPointer - index for our substring
      * inSubString - just boolean flag
-     * idx - "global index" - how many symbols we read at all
+     * idx - "global index" 
      */
 
     private int bufLen;
