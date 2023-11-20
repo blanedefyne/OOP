@@ -109,15 +109,15 @@ class SubstringFinderTest {
             e.printStackTrace();
         }
 
-        List<Long> res = finder.find("large.txt", "jessica jones");
-        bigText.delete();
-
         List<Long> expected = new ArrayList<>();
         expected.add(26L);
         expected.add(65L);
         expected.add(16106127440L);
         expected.add(16106127453L);
         expected.add(16106127466L);
+        
+        List<Long> res = finder.find("large.txt", "jessica jones");
+        bigText.delete();
 
         assertEquals(expected, res);
     }
