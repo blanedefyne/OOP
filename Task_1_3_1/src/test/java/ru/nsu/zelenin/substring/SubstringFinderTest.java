@@ -73,20 +73,20 @@ class SubstringFinderTest {
     }
 
     /**
-     * 16106127360 == 15 gb in bytes.
-     * + 78 bytes we added before cycle == 16106127438
-     * by the end of cycle fileSizeInBytes == -2, so we added 2 extra bytes
-     * 16106127438 + 2 == 16106127440
+     * 21474836480 == 20 gb in bytes.
+     * + 78 bytes we added before cycle == 21474836558
+     * by the end of cycle fileSizeInBytes == -20, so we added 20 extra bytes
+     * 21474836558 + 20 == 21474836578
      * and then + substring.length (it's 13)
      * and + 13
      */
     @Test
-    public void checkOn15Gb() {
+    public void checkOn20Gb() {
         File bigText = new File(getClass()
                 .getClassLoader()
                 .getResource("")
                 .getPath() + "/large.txt");;
-        long fileSizeInBytes = 15L * 1024 * 1024 * 1024;
+        long fileSizeInBytes = 20L * 1024 * 1024 * 1024;
         SubstringFinder finder = new SubstringFinder(150);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(bigText))) {
@@ -112,9 +112,9 @@ class SubstringFinderTest {
         List<Long> expected = new ArrayList<>();
         expected.add(26L);
         expected.add(65L);
-        expected.add(16106127440L);
-        expected.add(16106127453L);
-        expected.add(16106127466L);
+        expected.add(21474836578L);
+        expected.add(21474836591L);
+        expected.add(21474836604L);
         
         List<Long> res = finder.find("large.txt", "jessica jones");
         bigText.delete();
