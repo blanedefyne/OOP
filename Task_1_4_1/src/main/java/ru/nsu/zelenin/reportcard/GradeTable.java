@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Class helper - helps not to put HashMap into another HashMap.
+ */
 public class GradeTable {
     private final Map<Subject, Grade> gradeTable;
 

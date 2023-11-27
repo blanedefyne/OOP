@@ -1,12 +1,14 @@
 package ru.nsu.zelenin.reportcard;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class for student's report card representation.
  */
 public class ReportCard {
     /**
+     * Meaning of all fields.
      * totalSum - sum of all meaning grades (not including PASSes and FAILs)
      * totalGrades - amount of these grades
      * lessThan4 - number of grades less than 4
@@ -24,6 +26,7 @@ public class ReportCard {
 
     /**
      * Constructor.
+     *
      * @param semester - semester we're working with.
      */
     public ReportCard(Semester semester) {
@@ -159,7 +162,7 @@ public class ReportCard {
         int fours = (int) finalGrades.values().stream()
                 .filter(x -> x == Grade.GOOD)
                 .count();
-        return (fours / significantSubjects) <= 1/4;
+        return (fours / significantSubjects) <= 1 / 4;
     }
 
     /**
