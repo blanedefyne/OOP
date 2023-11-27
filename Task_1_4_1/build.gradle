@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'ru.nsu.zelenin'
+group = 'ru.nsu.zelenin.recordCard'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -29,8 +29,8 @@ jacocoTestReport {
     }
 }
 
-//java {
-//    toolchain {
-//        languageVersion = JavaLanguageVersion.of(17)
-//    }
-//}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
