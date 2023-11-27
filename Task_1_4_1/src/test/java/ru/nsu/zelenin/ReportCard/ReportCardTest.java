@@ -1,18 +1,17 @@
-package ru.nsu.zelenin.ReportCard;
+package ru.nsu.zelenin.reportcard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import ru.nsu.zelenin.reportCard.*;
 
 import java.util.Arrays;
 import java.util.List;;
 import java.util.stream.IntStream;
 
 
-class ReportCardTest {
+class reportCardTest {
 
     @Test
     public void simpleAverageTest() {

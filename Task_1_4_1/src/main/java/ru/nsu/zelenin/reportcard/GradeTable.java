@@ -1,4 +1,4 @@
-package ru.nsu.zelenin.reportCard;
+package ru.nsu.zelenin.reportcard;
 
 import java.util.Collection;
 import java.util.HashMap;
