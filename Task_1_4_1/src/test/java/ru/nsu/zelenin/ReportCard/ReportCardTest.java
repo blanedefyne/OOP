@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 
-class reportCardTest {
+class ReportCardTest {
 
     @Test
     public void simpleAverageTest() {
@@ -131,21 +131,36 @@ class reportCardTest {
         roiland.addGrade(third, subjects3.get(2), Grade.GOOD);
 
         assertEquals(
-                "--------------\n" +
-                "  SEMESTER 3\n" +
-                "--------------\n" +
-                "\n" +
-                "SUBJECT: Differential equation\n" +
-                "PROFESSOR: Vaskevich\n" +
-                "GRADE: GOOD\n" +
-                "\n" +
-                "SUBJECT: Models of computation\n" +
-                "PROFESSOR: Puzir\n" +
-                "GRADE: GOOD\n" +
-                "\n" +
-                "SUBJECT: English\n" +
-                "PROFESSOR: Savilova\n" +
-                "GRADE: GOOD\n" +
+                "--------------\n"
+                        +
+                "  SEMESTER 3\n"
+                        +
+                "--------------\n"
+                        +
+                "\n"
+                        +
+                "SUBJECT: Differential equation\n"
+                        +
+                "PROFESSOR: Vaskevich\n"
+                        +
+                "GRADE: GOOD\n"
+                        +
+                "\n"
+                        +
+                "SUBJECT: Models of computation\n"
+                        +
+                "PROFESSOR: Puzir\n"
+                        +
+                "GRADE: GOOD\n"
+                        +
+                "\n"
+                        +
+                "SUBJECT: English\n"
+                        +
+                "PROFESSOR: Savilova\n"
+                        +
+                "GRADE: GOOD\n"
+                        +
                 "\n", roiland.toString());
     }
 
