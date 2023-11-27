@@ -435,7 +435,7 @@ class ReportCardTest {
 
         assertEquals(4.333333333333333, petrov.getTotalAverage());
     }
-
+    
     @Test
     public void anotherSemesterAverageTest() {
         Semester first = new Semester(1);
