@@ -78,7 +78,7 @@ class CalculatorTest {
     }
 
     @Test
-    public void tooMuchArguments() {
+    public void tooManyArguments() {
         Calculator.solve("sqrt 12 342 1");
         assertEquals("Invalid input for calculator", Calculator.getExceptionName());
     }

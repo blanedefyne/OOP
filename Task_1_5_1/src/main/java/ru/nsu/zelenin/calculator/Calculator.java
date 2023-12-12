@@ -5,13 +5,22 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
+/**
+ * Class for calculating expressions.
+ */
 public class Calculator {
     private static String exceptionName;
     private static double result;
     private static double first;
     private static double second;
-    private final static Deque<Double> numbers = new ArrayDeque<>();
+    private static final Deque<Double> numbers = new ArrayDeque<>();
 
+    /**
+     * Main method of that class - solve.
+     *
+     * @param expression - given string representation
+     * @return boolean value - could we calculate this or were there an error
+     */
     public static boolean solve(String expression) {
 
         numbers.clear();
@@ -63,23 +72,49 @@ public class Calculator {
         return true;
     }
 
-    private static boolean isDouble(Atom str) {
+    /**
+     * Method check if given atom is a number.
+     *
+     * @param atom - given atom
+     * @return boolean value - is it or it's not
+     */
+    private static boolean isDouble(Atom atom) {
         try {
-            Double.parseDouble(str.getAtom());
+            Double.parseDouble(atom.getAtom());
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
+    /**
+     * Simple getter.
+     *
+     * @return result field
+     */
     public static double getResult() {
         return result;
     }
 
+    /**
+     * Simple getter.
+     *
+     * @return exceptionName field
+     */
     public static String getExceptionName() {
         return exceptionName;
     }
 
+    /**
+     * Method handles operations.
+     *
+     * @param operation - given atom that is not a number
+     * @throws ZeroDividingException - we cannot divide by 0
+     * @throws WrongLogArgumentException - negative numbers in logarithms
+     * @throws InvalidDegreeForNegativeNumberExpression - not integer degree for negative number
+     * @throws NegativeRootArgException - sqrt of negative number
+     * @throws InvalidInputException - all invalid inputs
+     */
     private static void operation(Atom operation)
             throws
             ZeroDividingException,
@@ -142,6 +177,11 @@ public class Calculator {
         }
     }
 
+    /**
+     * Method was made just for shorten appearance of the one above
+     * @param arity - how many arguments take an operation
+     * @throws InvalidInputException - invalid input
+     */
     private static void checkAndPop(int arity) throws InvalidInputException {
         if (numbers.size() < arity) {
             throw new InvalidInputException("Invalid input for calculator!");

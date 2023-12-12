@@ -2,6 +2,9 @@ package ru.nsu.zelenin.calculator;
 
 import java.util.Scanner;
 
+/**
+ * Main class with console input and output for expressions and result.
+ */
 public class Main {
     public static void main(String[] args) {
         String stopWord = "stop";

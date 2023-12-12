@@ -1,6 +1,9 @@
 package ru.nsu.zelenin.calculator;
 
-public class ZeroDividingException extends Exception{
+/**
+ * Exception for dividing by zero.
+ */
+public class ZeroDividingException extends Exception {
     public ZeroDividingException(String message) {
         super(message);
     }
