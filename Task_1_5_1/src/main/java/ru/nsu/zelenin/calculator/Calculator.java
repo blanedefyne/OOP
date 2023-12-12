@@ -29,16 +29,10 @@ public class Calculator {
 
         int size = atoms.size() - 1;
         for (int i = size; i >= 0; i--) {
-            if (Calculator.isDouble(atoms.get(i))) {
-                numbers.push(Double.parseDouble(atoms.get(i).getAtom()));
-
-            } else if (atoms.get(i).getAtom().equals("pi")) {
-                numbers.push(Math.PI);
-
-            } else {
+            Atom atom = atoms.get(i);
+            if (atom instanceof Operation op) {
                 try {
-                    operation(atoms.get(i));
-
+                    operation(op);
                 } catch (ZeroDividingException e) {
                     exceptionName = "Dividing by zero";
                     System.out.println(exceptionName + " - calculation aborted!");
@@ -60,6 +54,8 @@ public class Calculator {
                     System.out.println(exceptionName + " - calculation aborted!");
                     return false;
                 }
+            } else if (atom instanceof Number num){
+                numbers.push(num.getNumber());
             }
         }
 
@@ -72,20 +68,6 @@ public class Calculator {
         return true;
     }
 
-    /**
-     * Method check if given atom is a number.
-     *
-     * @param atom - given atom
-     * @return boolean value - is it or it's not
-     */
-    private static boolean isDouble(Atom atom) {
-        try {
-            Double.parseDouble(atom.getAtom());
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     /**
      * Simple getter.
@@ -115,7 +97,7 @@ public class Calculator {
      * @throws NegativeRootArgException - sqrt of negative number
      * @throws InvalidInputException - all invalid inputs
      */
-    private static void operation(Atom operation)
+    private static void operation(Operation operation)
             throws
             ZeroDividingException,
             WrongLogArgumentException,
@@ -123,7 +105,7 @@ public class Calculator {
             NegativeRootArgException,
             InvalidInputException {
 
-        switch (operation.getAtom()) {
+        switch (operation.getOperation()) {
             case "+" -> {
                 Calculator.checkAndPop(2);
                 numbers.push(first + second);

@@ -7,12 +7,6 @@ import java.util.List;
  * Atom (token) class for passing to solver.
  */
 public class Atom {
-    private final String atom;
-
-    public Atom(String atom) {
-        this.atom = atom;
-    }
-
     /**
      * Method parses the string.
      * it doesn't count empty strings
@@ -28,13 +22,28 @@ public class Atom {
 
         for (String s : spacesSplit) {
             if (!s.isEmpty()) {
-                res.add(new Atom(s));
+                if (isDouble(s)) {
+                    res.add(new Number(Double.parseDouble(s)));
+                } else {
+                    res.add(new Operation(s));
+                }
             }
         }
         return res;
     }
 
-    public String getAtom() {
-        return atom;
+    /**
+     * Method check if given atom is a number.
+     *
+     * @param str - given atom
+     * @return boolean value - is it or it's not
+     */
+    private static boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
