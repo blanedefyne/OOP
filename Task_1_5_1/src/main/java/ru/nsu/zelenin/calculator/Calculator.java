@@ -178,7 +178,8 @@ public class Calculator {
     }
 
     /**
-     * Method was made just for shorten appearance of the one above
+     * Method was made just for shorten appearance of the one above.
+     *
      * @param arity - how many arguments take an operation
      * @throws InvalidInputException - invalid input
      */
