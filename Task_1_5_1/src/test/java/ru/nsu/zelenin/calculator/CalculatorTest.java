@@ -100,7 +100,8 @@ class CalculatorTest {
 
     @Test
     public void allOperationsTest() {
-        Calculator.solve("/ 2024 * sqrt 90.9090 pow 1.7 - + cos 6.2831853071795 sin 1.9 log 31.5 10.12");
+        Calculator.solve(
+                "/ 2024 * sqrt 90.9090 pow 1.7 - + cos 6.2831853071795 sin 1.9 log 31.5 10.12");
         assertEquals(107.89143029761019, Calculator.getResult());
     }
 }

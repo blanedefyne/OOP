@@ -2,7 +2,6 @@ package ru.nsu.zelenin.calculator;
 
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -163,6 +162,7 @@ public class Calculator {
                 Calculator.checkAndPop(1);
                 numbers.push(Math.sin(first));
             }
+            default -> throw new InvalidInputException("Invalid input!");
         }
     }
 
