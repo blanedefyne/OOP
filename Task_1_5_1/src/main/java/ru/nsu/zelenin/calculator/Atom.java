@@ -16,7 +16,8 @@ public class Atom {
      * @param string - given string
      * @return arrayList of atoms
      */
-    public static List<Atom> parseAtoms(String string) {
+    public static List<Atom> parseAtoms(String string)
+            throws InvalidInputException {
         List<Atom> res = new ArrayList<>();
         String[] spacesSplit = string.split(" ");
 
@@ -25,7 +26,11 @@ public class Atom {
                 if (isDouble(s)) {
                     res.add(new Number(Double.parseDouble(s)));
                 } else {
-                    res.add(new Operation(s));
+                    switch (s) {
+                        case "+", "-", "*", "/", "log", "sqrt", "pow", "cos", "sin"
+                                -> res.add(new Operation(s));
+                        default -> throw new InvalidInputException("Invalid input!");
+                    }
                 }
             }
         }

@@ -1,6 +1,10 @@
 package ru.nsu.zelenin.calculator;
 
-public class Operation extends Atom{
+/**
+ * Class extending Atom.
+ * cause Atom can be either an Operation or a Number
+ */
+public class Operation extends Atom {
     private final String operation;
 
     public Operation(String operation) {

@@ -2,6 +2,7 @@ package ru.nsu.zelenin.calculator;
 
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -25,7 +26,14 @@ public class Calculator {
 
         numbers.clear();
         exceptionName = null;
-        List<Atom> atoms = Atom.parseAtoms(expression);
+        List<Atom> atoms;
+        try {
+            atoms = Atom.parseAtoms(expression);
+        } catch (InvalidInputException e) {
+            exceptionName = "Invalid input for calculator";
+            System.out.println(exceptionName + " - calculation aborted!");
+            return false;
+        }
 
         int size = atoms.size() - 1;
         for (int i = size; i >= 0; i--) {
@@ -54,7 +62,7 @@ public class Calculator {
                     System.out.println(exceptionName + " - calculation aborted!");
                     return false;
                 }
-            } else if (atom instanceof Number num){
+            } else if (atom instanceof Number num) {
                 numbers.push(num.getNumber());
             }
         }
@@ -155,7 +163,6 @@ public class Calculator {
                 Calculator.checkAndPop(1);
                 numbers.push(Math.sin(first));
             }
-            default -> throw new InvalidInputException("Invalid input for calculator!");
         }
     }
 
