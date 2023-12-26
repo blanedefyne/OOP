@@ -4,8 +4,9 @@ package ru.nsu.zelenin.graph;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.Locale;
+import java.util.Scanner;
+
 
 /**
  * Main abstract class for graph representations.
@@ -42,7 +43,7 @@ public abstract class MainGraph<V, E extends Number> implements Graph<V, E> {
      * @param path - file path
      */
     public static void graphFromFile(MainGraph<Integer, Double> graph, String path) {
-        try(Scanner scan = new Scanner(
+        try (Scanner scan = new Scanner(
                 Objects.requireNonNull(MainGraph.class.getClassLoader().getResourceAsStream(path)))
                 .useLocale(Locale.US)
         ) {

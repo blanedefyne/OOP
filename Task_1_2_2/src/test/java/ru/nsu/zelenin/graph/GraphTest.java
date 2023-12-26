@@ -254,12 +254,12 @@ public class GraphTest {
 
     @Test
     public void imEdgesTest() {
-        IncidenceMatrixGraph<String, Integer> imGraph = new IncidenceMatrixGraph<>(
+        IncidenceMatrixGraph<String, Long> imGraph = new IncidenceMatrixGraph<>(
                 new ArrayList<>(), new ArrayList<>()
         );
 
-        imGraph.addEdge("a", "b", 10);
-        imGraph.addEdge("c", "d", 112);
+        imGraph.addEdge("a", "b", 10L);
+        imGraph.addEdge("c", "d", 112L);
         imGraph.addVertex("Rebel");
         imGraph.setVertex("Rebel", "giant");
         imGraph.removeVertex("giant");
@@ -280,19 +280,19 @@ public class GraphTest {
         vertices.add(one2);
         vertices.add(one3);
         vertices.add(one4);
-        List<Edge<Integer, Double>> edges = new ArrayList<>();
-        edges.add(new Edge<>(one, one4, 10d));
-        edges.add(new Edge<>(one2, one3, 9d));
-        edges.add(new Edge<>(one3, one4, 31.5));
-        edges.add(new Edge<>(one, one2, 27d));
-        edges.add(new Edge<>(one3, one, 0.9));
-        IncidenceMatrixGraph<Integer, Double> imGraph = new IncidenceMatrixGraph<>(vertices, edges);
+        List<Edge<Integer, Float>> edges = new ArrayList<>();
+        edges.add(new Edge<>(one, one4, 10f));
+        edges.add(new Edge<>(one2, one3, 9f));
+        edges.add(new Edge<>(one3, one4, 31.5f));
+        edges.add(new Edge<>(one, one2, 27f));
+        edges.add(new Edge<>(one3, one, 0.9f));
+        IncidenceMatrixGraph<Integer, Float> imGraph = new IncidenceMatrixGraph<>(vertices, edges);
 
         imGraph.setVertex(11, 12);
         imGraph.setVertex(111, 13);
         imGraph.removeEdge(12, 13);
-        imGraph.addEdge(12, 1, 105.09);
-        imGraph.addEdge(13, 14, 152.13);
+        imGraph.addEdge(12, 1, 105.09f);
+        imGraph.addEdge(13, 14, 152.13f);
         imGraph.removeVertex(12);
         imGraph.removeVertex(1);
 

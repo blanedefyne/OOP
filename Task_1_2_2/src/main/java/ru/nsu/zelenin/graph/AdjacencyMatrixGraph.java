@@ -75,7 +75,6 @@ public class AdjacencyMatrixGraph<V, E extends Number>
      */
     @Override
     public void removeVertex(V value) {
-        int verticesCount = vertices.size();
         int idx = vertices.indexOf(this.getVertex(value));
         if (idx == -1) {
             return;
@@ -85,6 +84,7 @@ public class AdjacencyMatrixGraph<V, E extends Number>
                 .filter(Objects::nonNull)
                 .count();
         matrix.remove(idx);
+        int verticesCount = vertices.size();
         for (int i = 0; i < verticesCount - 1; ++i) {
             if (matrix.get(i).get(idx) != null) {
                 deletedEdges++;

@@ -225,9 +225,9 @@ public class IncidenceMatrixGraph<V, E extends Number>
         verticesMap.remove(value);
         verticesMap.put(newValue, temp);
 
-        var vert = vertices.stream().
-                filter(v -> v.getValue() == value).
-                findFirst()
+        var vert = vertices.stream()
+                .filter(v -> v.getValue() == value)
+                .findFirst()
                 .orElse(null);
         if (vert == null) {
             return;
