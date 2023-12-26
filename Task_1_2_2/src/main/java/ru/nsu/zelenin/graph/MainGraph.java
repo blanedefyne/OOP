@@ -2,9 +2,9 @@ package ru.nsu.zelenin.graph;
 
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Locale;
 import java.util.Scanner;
 
 
