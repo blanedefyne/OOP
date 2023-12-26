@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Testing class.
+ */
 public class GraphTest {
 
     @Test
@@ -35,18 +38,18 @@ public class GraphTest {
 
     @Test
     public void amSetGetEdgeTest() {
+        var a = new Vertex<>("A");
+        var b = new Vertex<>("B");
+        var c = new Vertex<>("C");
         List<Vertex<String>> vertices = new ArrayList<>();
+        vertices.add(a);
+        vertices.add(b);
+        vertices.add(c);
         List<Edge<String, Double>> edges = new ArrayList<>();
-        var A = new Vertex<>("A");
-        var B = new Vertex<>("B");
-        var C = new Vertex<>("C");
-        vertices.add(A);
-        vertices.add(B);
-        vertices.add(C);
-        edges.add(new Edge<>(A, B, 10d));
-        edges.add(new Edge<>(B, C, 9d));
-        edges.add(new Edge<>(A, C, 3d));
-        edges.add(new Edge<>(C, A, 27d));
+        edges.add(new Edge<>(a, b, 10d));
+        edges.add(new Edge<>(b, c, 9d));
+        edges.add(new Edge<>(a, c, 3d));
+        edges.add(new Edge<>(c, a, 27d));
         AdjacencyMatrixGraph<String, Double> amGraph = new AdjacencyMatrixGraph<>(vertices, edges);
         amGraph.addVertex("devil");
         amGraph.addVertex("ABC");
@@ -111,6 +114,7 @@ public class GraphTest {
         assertEquals(answer, res);
 
     }
+
     @Test
     public void amDijkstraFromExample() {
         AdjacencyMatrixGraph<String, Double> amGraph = new AdjacencyMatrixGraph<>(
@@ -137,7 +141,6 @@ public class GraphTest {
         amGraph.addEdge("C", "G", 10d);
         amGraph.addEdge("G", "C", 10d);
 
-        List<Vertex<String>> res = amGraph.dijkstra("C");
         List<Vertex<String>> answer = new ArrayList<>();
         answer.add(new Vertex<>("C"));
         answer.add(new Vertex<>("D"));
@@ -147,6 +150,7 @@ public class GraphTest {
         answer.add(new Vertex<>("B"));
         answer.add(new Vertex<>("A"));
 
+        List<Vertex<String>> res = amGraph.dijkstra("C");
         assertEquals(answer, res);
     }
 
@@ -170,21 +174,21 @@ public class GraphTest {
 
     @Test
     public void alOneMoreTest() {
+        var a = new Vertex<>("A");
+        var b = new Vertex<>("B");
+        var c = new Vertex<>("C");
+        var d = new Vertex<>("D");
         List<Vertex<String>> vertices = new ArrayList<>();
+        vertices.add(a);
+        vertices.add(b);
+        vertices.add(c);
+        vertices.add(d);
         List<Edge<String, Float>> edges = new ArrayList<>();
-        var A = new Vertex<>("A");
-        var B = new Vertex<>("B");
-        var C = new Vertex<>("C");
-        var D = new Vertex<>("D");
-        vertices.add(A);
-        vertices.add(B);
-        vertices.add(C);
-        vertices.add(D);
-        edges.add(new Edge<>(A, B, 10f));
-        edges.add(new Edge<>(B, C, 9f));
-        edges.add(new Edge<>(A, C, 31.5f));
-        edges.add(new Edge<>(C, A, 27f));
-        edges.add(new Edge<>(D, A, 0.9f));
+        edges.add(new Edge<>(a, b, 10f));
+        edges.add(new Edge<>(b, c, 9f));
+        edges.add(new Edge<>(a, c, 31.5f));
+        edges.add(new Edge<>(c, a, 27f));
+        edges.add(new Edge<>(d, a, 0.9f));
         AdjacencyListGraph<String, Float> alGraph = new AdjacencyListGraph<>(vertices, edges);
 
         alGraph.setVertex("A", "AAAA");
@@ -199,13 +203,13 @@ public class GraphTest {
                 new ArrayList<>(), new ArrayList<>()
         );
         MainGraph.graphFromFile(alGraph, "alTestGraph.txt");
-        List<Vertex<Integer>> res = alGraph.dijkstra(3);
         List<Vertex<Integer>> answer = new ArrayList<>();
         answer.add(new Vertex<>(3));
         answer.add(new Vertex<>(1));
         answer.add(new Vertex<>(2));
         answer.add(new Vertex<>(4));
 
+        List<Vertex<Integer>> res = alGraph.dijkstra(3);
         assertEquals(answer, res);
     }
 
@@ -235,7 +239,6 @@ public class GraphTest {
         alGraph.addEdge("C", "G", 10d);
         alGraph.addEdge("G", "C", 10d);
 
-        List<Vertex<String>> res = alGraph.dijkstra("C");
         List<Vertex<String>> answer = new ArrayList<>();
         answer.add(new Vertex<>("C"));
         answer.add(new Vertex<>("D"));
@@ -245,6 +248,7 @@ public class GraphTest {
         answer.add(new Vertex<>("B"));
         answer.add(new Vertex<>("A"));
 
+        List<Vertex<String>> res = alGraph.dijkstra("C");
         assertEquals(answer, res);
     }
 
@@ -267,16 +271,16 @@ public class GraphTest {
 
     @Test
     public void imOneMoreTest() {
-        List<Vertex<Integer>> vertices = new ArrayList<>();
-        List<Edge<Integer, Double>> edges = new ArrayList<>();
         var one = new Vertex<>(1);
         var one2 = new Vertex<>(11);
         var one3 = new Vertex<>(111);
         var one4 = new Vertex<>(1111);
+        List<Vertex<Integer>> vertices = new ArrayList<>();
         vertices.add(one);
         vertices.add(one2);
         vertices.add(one3);
         vertices.add(one4);
+        List<Edge<Integer, Double>> edges = new ArrayList<>();
         edges.add(new Edge<>(one, one4, 10d));
         edges.add(new Edge<>(one2, one3, 9d));
         edges.add(new Edge<>(one3, one4, 31.5));
@@ -305,7 +309,6 @@ public class GraphTest {
         MainGraph.graphFromFile(imGraph, "imTestGraph.txt");
         imGraph.setEdge(2, 3, 9d);
         imGraph.setEdge(3, 2, 9d);
-        List<Vertex<Integer>> res = imGraph.dijkstra(2);
         List<Vertex<Integer>> answer = new ArrayList<>();
         answer.add(new Vertex<>(2));
         answer.add(new Vertex<>(5));
@@ -314,6 +317,7 @@ public class GraphTest {
         answer.add(new Vertex<>(3));
         answer.add(new Vertex<>(1));
 
+        List<Vertex<Integer>> res = imGraph.dijkstra(2);
         assertEquals(answer, res);
     }
 
@@ -343,7 +347,6 @@ public class GraphTest {
         imGraph.addEdge("C", "G", 10d);
         imGraph.addEdge("G", "C", 10d);
 
-        List<Vertex<String>> res = imGraph.dijkstra("C");
         List<Vertex<String>> answer = new ArrayList<>();
         answer.add(new Vertex<>("C"));
         answer.add(new Vertex<>("D"));
@@ -353,6 +356,7 @@ public class GraphTest {
         answer.add(new Vertex<>("B"));
         answer.add(new Vertex<>("A"));
 
+        List<Vertex<String>> res = imGraph.dijkstra("C");
         assertEquals(answer, res);
     }
 }
