@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @param <V> - vertex type
  */
-public class Vertex<V>{
+public class Vertex<V> {
     private V value;
 
     /**
@@ -45,8 +45,12 @@ public class Vertex<V>{
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Vertex<?> vertex = (Vertex<?>) o;
         return Objects.equals(value, vertex.value);
     }

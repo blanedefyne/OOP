@@ -1,7 +1,7 @@
 package ru.nsu.zelenin.graph;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -165,7 +165,7 @@ public class AdjacencyListGraph<V, E extends Number>
     }
 
     /**
-     * Method changes a vertex value
+     * Method changes a vertex value.
      *
      * @param value - old value
      * @param newValue - new value
@@ -205,7 +205,7 @@ public class AdjacencyListGraph<V, E extends Number>
      */
     @Override
     public List<Vertex<V>> dijkstra(V start) {
-        final double INF = 1000000;
+        final double infinity = 10000000;
 
         int verticesCount = verticesMap.size();
         Vertex<V> startVertex = getVertex(start);
@@ -225,7 +225,7 @@ public class AdjacencyListGraph<V, E extends Number>
             if (i == stIdx) {
                 distances[i] = 0d;
             } else {
-                distances[i] = INF;
+                distances[i] = infinity;
             }
         }
 
@@ -236,7 +236,7 @@ public class AdjacencyListGraph<V, E extends Number>
                     v = j;
                 }
             }
-            if (distances[v] == INF) {
+            if (distances[v] == infinity) {
                 break;
             }
             used[v] = true;

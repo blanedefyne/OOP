@@ -103,7 +103,6 @@ public class GraphTest {
                 new ArrayList<>(), new ArrayList<>()
         );
         MainGraph.graphFromFile(amGraph, "amTestGraph.txt");
-        List<Vertex<Integer>> res = amGraph.dijkstra(2);
         List<Vertex<Integer>> answer = new ArrayList<>();
         answer.add(new Vertex<>(2));
         answer.add(new Vertex<>(5));
@@ -111,6 +110,7 @@ public class GraphTest {
         answer.add(new Vertex<>(1));
         answer.add(new Vertex<>(3));
 
+        List<Vertex<Integer>> res = amGraph.dijkstra(2);
         assertEquals(answer, res);
 
     }
