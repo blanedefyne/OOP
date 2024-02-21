@@ -1,7 +1,7 @@
 package ru.nsu.zelenin.composites;
 
 /**
- * Class for finding composite number in array
+ * Class for finding composite number in array.
  * using progressively computations
  */
 public class ProgressivelyComposites {

@@ -3,7 +3,7 @@ package ru.nsu.zelenin.composites;
 import java.util.Arrays;
 
 /**
- * Class for finding composite number in array
+ * Class for finding composite number in array.
  * using parallelStream()
  */
 public class ConcurrentStreams {

@@ -1,8 +1,8 @@
 package ru.nsu.zelenin.composites;
 
 /**
- * Class for finding a composite number in array using
- * concurrent computations (few threads)
+ * Class for finding a composite number in array.
+ * (using concurrent computations - few threads)
  */
 public class ConcurrentComposites {
     private static volatile int idx;
