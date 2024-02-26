@@ -12,8 +12,8 @@ public class CompositesTest {
 
     @Test
     public void streamTest() {
-        Integer[] array = {2, 3, 11, 11, 47, 701, 6997927, 606559, 8};
-        assertTrue(ConcurrentStreams.compStreamFinder(array));
+        Integer[] array = {20, 5, 5, 5, 5, 15, 5, 5, 7, 7, 7, 7, 9};
+        assertTrue(ConcurrentComposites.compFinder(array, 3));
     }
 
     @Test
@@ -57,12 +57,12 @@ public class CompositesTest {
 
     @Test
     public void concurrentTest2() {
-        Integer[] arr = {946369, 8, 946459, 946469, 946487, 81,
+        Integer[] arr = {946369, 8, 90, 946459, 946469, 946487, 81,
                          946489, 946507, 946511, 946513, 946549, 946573,
                          946579, 946607, 946661, 946663, 946667, 946669,
                          946681, 946697, 946717, 946727, 946733, 946741,
                          946753, 946769, 946783, 946801, 946819, 946823,
-                         946873, 946877, 946901, 90, 946919};
+                         946873, 946877, 946901, 12, 946919};
 
         assertTrue(ConcurrentComposites.compFinder(arr, 4));
     }
@@ -75,6 +75,7 @@ public class CompositesTest {
             arr[2 * i] = 20319251;
             arr[2 * i + 1] = 6998053;
         }
+        arr[17800000] = 80;
 
         long startTime = System.nanoTime();
         boolean res = ConcurrentStreams.compStreamFinder(arr);
@@ -82,6 +83,6 @@ public class CompositesTest {
         long duration = (endTime - startTime) / 1000000;
 
         System.out.println(duration);
-        assertFalse(res);
+        assertTrue(res);
     }
 }

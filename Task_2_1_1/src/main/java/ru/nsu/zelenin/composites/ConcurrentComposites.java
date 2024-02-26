@@ -1,39 +1,45 @@
 package ru.nsu.zelenin.composites;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class for finding a composite number in array.
  * (using concurrent computations - few threads)
  */
 public class ConcurrentComposites {
-    private static volatile int idx;
-    private static boolean answer;
-
     /**
      * Method return boolean value - does an array contain a composite number or not.
+     * (if there is a composite number / numbers - method prints one of them)
      *
      * @param array - array we are considering
      * @param n - number of threads using
      * @return - boolean value
      */
     public static boolean compFinder(Integer[] array, int n) {
-        answer = false;
-        idx = 0;
         Thread[] threads = new Thread[n];
+        boolean[] answer = {false};
+        List<Integer> ranges = makePartition(array, n);
+        int prevL;
+        int prevR = 0;
 
         for (int i = 0; i < n; ++i) {
+            prevL = prevR;
+            prevR += ranges.get(i);
+            int r = prevR;
+            int l = prevL;
             threads[i] = new Thread(() -> {
-                int index;
-                while ((index = getNextIndex()) < array.length) {
-                    if (ProgressivelyComposites.isComposite(array[index])) {
+                for (int j = l; j < r; ++j) {
+                    if (ProgressivelyComposites.isComposite(array[j])) {
                         synchronized (ConcurrentComposites.class) {
-                            answer = true;
+                            if (!answer[0]) {
+                                System.out.println(array[j] + " is composite!");
+                            }
+                            answer[0] = true;
+                            return;
                         }
-                        System.out.println(array[index] + " is composite!");
-                        interruptAllThreads(threads);
-                        return;
                     }
-                    if (answer) {
-                        interruptAllThreads(threads);
+                    if (answer[0]) {
                         return;
                     }
                 }
@@ -49,27 +55,33 @@ public class ConcurrentComposites {
             }
         }
 
-        return answer;
+        return answer[0];
     }
 
     /**
-     * Synchronized method for incrementing index of element of array.
+     * Private method for making a partition of elements for threads.
      *
-     * @return int - new index
+     * @param array - given array
+     * @param n - number of threads
+     * @return - list of numbers of elements on each thread
      */
-    private static synchronized int getNextIndex() {
-        return idx++;
-    }
+    private static List<Integer> makePartition(Integer[] array, int n) {
+        List<Integer> partition = new ArrayList<>();
+        int elemsLeft = array.length;
+        int threadsLeft = n;
 
-    /**
-     * Method interrupts all threads - in case we already found a number.
-     *
-     * @param threads - array of threads
-     */
-    private static void interruptAllThreads(Thread[] threads) {
-        for (Thread thread : threads) {
-            thread.interrupt();
+        for (int i = 0; i < n; i++) {
+            if (elemsLeft % threadsLeft == 0) {
+                for (int j = 0; j < threadsLeft; ++j) {
+                    partition.add(elemsLeft / threadsLeft);
+                }
+                break;
+            }
+            int x = elemsLeft / threadsLeft + 1;
+            partition.add(x);
+            elemsLeft -= x;
+            threadsLeft--;
         }
+        return partition;
     }
-
 }
