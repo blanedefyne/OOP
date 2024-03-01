@@ -8,6 +8,8 @@ import java.util.List;
  * (using concurrent computations - few threads)
  */
 public class ConcurrentComposites {
+
+    private static volatile boolean answer;
     /**
      * Method return boolean value - does an array contain a composite number or not.
      * (if there is a composite number / numbers - method prints one of them)
@@ -17,8 +19,8 @@ public class ConcurrentComposites {
      * @return - boolean value
      */
     public static boolean compFinder(Integer[] array, int n) {
+        answer = false;
         Thread[] threads = new Thread[n];
-        boolean[] answer = {false};
         List<Integer> ranges = makePartition(array, n);
         int prevL;
         int prevR = 0;
@@ -32,14 +34,14 @@ public class ConcurrentComposites {
                 for (int j = l; j < r; ++j) {
                     if (ProgressivelyComposites.isComposite(array[j])) {
                         synchronized (ConcurrentComposites.class) {
-                            if (!answer[0]) {
+                            if (!answer) {
                                 System.out.println(array[j] + " is composite!");
                             }
-                            answer[0] = true;
+                            answer = true;
                             return;
                         }
                     }
-                    if (answer[0]) {
+                    if (answer) {
                         return;
                     }
                 }
@@ -55,7 +57,7 @@ public class ConcurrentComposites {
             }
         }
 
-        return answer[0];
+        return answer;
     }
 
     /**

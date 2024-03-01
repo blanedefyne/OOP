@@ -78,7 +78,7 @@ public class CompositesTest {
         arr[17800000] = 80;
 
         long startTime = System.nanoTime();
-        boolean res = ConcurrentStreams.compStreamFinder(arr);
+        boolean res = ConcurrentComposites.compFinder(arr, 6);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime) / 1000000;
 
