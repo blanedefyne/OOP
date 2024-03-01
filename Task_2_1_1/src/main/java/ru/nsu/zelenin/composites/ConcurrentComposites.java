@@ -10,6 +10,7 @@ import java.util.List;
 public class ConcurrentComposites {
 
     private static volatile boolean answer;
+    
     /**
      * Method return boolean value - does an array contain a composite number or not.
      * (if there is a composite number / numbers - method prints one of them)
