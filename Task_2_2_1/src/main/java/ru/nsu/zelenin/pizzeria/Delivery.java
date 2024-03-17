@@ -1,9 +1,10 @@
 package ru.nsu.zelenin.pizzeria;
 
+import static java.lang.Thread.sleep;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
 
 /**
  * Class for representing pizzeria's delivery.

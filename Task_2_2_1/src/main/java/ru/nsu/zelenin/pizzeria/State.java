@@ -1,7 +1,7 @@
 package ru.nsu.zelenin.pizzeria;
 
 /**
- * Class for printing the orders' state
+ * Class for printing the orders' state.
  */
 public class State {
     /**
