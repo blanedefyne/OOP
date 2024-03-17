@@ -1,8 +1,9 @@
 package ru.nsu.zelenin.pizzeria;
 
+import static java.lang.Thread.sleep;
+
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
 
 /**
  * Class for representing new clients.

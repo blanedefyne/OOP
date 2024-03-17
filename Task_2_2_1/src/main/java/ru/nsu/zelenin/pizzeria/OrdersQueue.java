@@ -16,8 +16,6 @@ public class OrdersQueue {
      *
      * @return - an order from queue
      * @throws InterruptedException - in case method was interrupted while waiting
-     * it should throw the exception to "upper level" - to user's code,
-     * so he decides what to do with exception
      */
     public synchronized Order get() throws InterruptedException {
         while (orders.isEmpty()) {

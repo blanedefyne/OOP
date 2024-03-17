@@ -1,7 +1,8 @@
 package ru.nsu.zelenin.pizzeria;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import static java.lang.Thread.sleep;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Class for representing her majesty pizzeria.
@@ -155,7 +156,7 @@ public class Pizzeria {
      * So we wait for this thread to finish - we call join().
      */
     public void stopChefs() {
-        for (Thread chef: chefs) {
+        for (Thread chef : chefs) {
             if (chef.getState().equals(Thread.State.WAITING)) {
                 chef.interrupt();
             } else {
@@ -178,7 +179,7 @@ public class Pizzeria {
      * So we wait for this thread to finish - we call join().
      */
     public void stopCouriers() {
-        for (Thread courier: couriers) {
+        for (Thread courier : couriers) {
             if (courier.getState().equals(Thread.State.WAITING)) {
                 courier.interrupt();
             } else {

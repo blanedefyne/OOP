@@ -2,11 +2,9 @@ package ru.nsu.zelenin.pizzeria;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 
 /**
  * Interface for reading from json.
