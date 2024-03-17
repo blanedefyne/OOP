@@ -3,30 +3,49 @@ package ru.nsu.zelenin.pizzeria;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for representing BlockingQueue.
+ */
 public class OrdersQueue {
     private int idx = 0;
-    private volatile List<Order> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 
-    public synchronized Order get() {
+    /**
+     * get() method - tries to get an order from queue if there's some.
+     * if there's not - thread waits for new orders to come.
+     *
+     * @return - an order from queue
+     * @throws InterruptedException - in case method was interrupted while waiting
+     * it should throw the exception to "upper level" - to user's code,
+     * so he decides what to do with exception
+     */
+    public synchronized Order get() throws InterruptedException {
         while (orders.isEmpty()) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            wait();
         }
         Order order = orders.get(0);
         orders.remove(0);
         return order;
     }
 
+    /**
+     * put() method.
+     * adds an order to queue and notifies a waiting thread, so it can get() a new order
+     *
+     * @param orderName - name of an order
+     */
     public synchronized void put(String orderName) {
         orders.add(new Order(idx++, orderName));
         notify();
     }
 
-    public boolean isEmpty() {
-        return orders.isEmpty();
+    /**
+     * Simple getter.
+     *
+     * @return idx
+     */
+    public int getIdx() {
+        return idx;
     }
 
 }

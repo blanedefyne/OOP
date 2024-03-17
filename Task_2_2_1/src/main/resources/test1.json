@@ -1,0 +1,22 @@
+{
+  "cookingTime": [
+    4500,
+    7800
+  ],
+  "deliveryCapacities": [
+    4,
+    3
+  ],
+  "deliveryTime": [
+    2000,
+    10000
+  ],
+  "storageCapacity": 5,
+  "workingTime": 30,
+  "menu": [
+    "Pepperoni",
+    "Hawaii",
+    "Chicago",
+    "Cheeseburger"
+  ]
+}
