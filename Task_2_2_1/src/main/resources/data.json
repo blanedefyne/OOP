@@ -1,0 +1,35 @@
+{
+  "cookingTime": [
+    8000,
+    6000,
+    10000
+    ],
+  "deliveryCapacities": [
+    2,
+    3,
+    4,
+    3
+  ],
+  "deliveryTime": [
+    2000,
+    15000,
+    5000,
+    3000
+  ],
+  "storageCapacity": 3,
+  "workingTime": 10,
+  "menu": [
+    "Pepperoni",
+    "Hawaii",
+    "Chicago",
+    "Margarita",
+    "4 cheeses",
+    "Vegetarian",
+    "Meat Bomb",
+    "Chicken extra",
+    "XXL onion",
+    "Mexico",
+    "Ham & Mushrooms",
+    "Cheeseburger"
+  ]
+}

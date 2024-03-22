@@ -1,0 +1,18 @@
+{
+  "cookingTime": [
+    1500
+  ],
+  "deliveryCapacities": [
+    3
+  ],
+  "deliveryTime": [
+    3000
+  ],
+  "storageCapacity": 3,
+  "workingTime": 2,
+  "menu": [
+    "Chicago",
+    "Rex-Splode",
+    "Omni-Man"
+  ]
+}
