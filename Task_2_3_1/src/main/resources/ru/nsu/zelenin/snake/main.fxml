@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.zelenin.snake.MainController">
+   <VBox prefHeight="200.0" prefWidth="600.0">
+      <children>
+          <MenuBar prefHeight="25.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Game">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#restart" text="Restart" />
+                     <MenuItem mnemonicParsing="false" text="Pause" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem fx:id="nextPic" mnemonicParsing="false" onAction="#nextPic" text="NextPic" />
+                     <MenuItem mnemonicParsing="false" onAction="#prevPic" text="PrevPic" />
+                    </items>
+                </Menu>
+               <Menu mnemonicParsing="false" text="View">
+                  <items>
+                     <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Music">
+                  <items>
+                     <MenuItem mnemonicParsing="false" onAction="#playSound" text="On" />
+                     <MenuItem mnemonicParsing="false" onAction="#stopSound" text="Off" />
+                     <MenuItem mnemonicParsing="false" onAction="#playNext" text="Next" />
+                     <MenuItem mnemonicParsing="false" onAction="#playPrev" text="Previous" />
+                  </items>
+               </Menu>
+            </menus>
+          </MenuBar>
+         <ImageView fx:id="myImageView" fitHeight="600.0" fitWidth="600.0" pickOnBounds="true">
+            <image>
+               <Image url="@images/lion.jpg" />
+            </image>
+         </ImageView>
+      </children>
+   </VBox>
+    <Canvas fx:id="myCanvas" height="600.0" pickOnBounds="true" translateY="25.0" width="600.0" />
+</AnchorPane>

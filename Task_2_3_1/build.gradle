@@ -1,0 +1,58 @@
+plugins {
+  id 'java'
+  id 'jacoco'
+  id 'application'
+  id 'org.javamodularity.moduleplugin' version '1.8.12'
+  id 'org.openjfx.javafxplugin' version '0.0.13'
+  id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'ru.nsu.zelenin'
+version '1.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+}
+
+javadoc {
+  destinationDir = file("${buildDir}/docs/javadoc")
+}
+
+ext {
+  junitVersion = '5.9.2'
+}
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
+
+javafx {
+  version = '20.0.1'
+  modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
+}
+
+dependencies {
+
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+useJUnitPlatform()}
+
+jlinkZip {
+  group = 'distribution'
+}
+
+jacocoTestReport {
+  reports {
+    xml.required = true
+  }
+}
+
+//java {
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(17)
+//    }
+//}
