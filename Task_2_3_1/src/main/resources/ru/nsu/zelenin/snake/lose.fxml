@@ -7,10 +7,11 @@
 
 <AnchorPane prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.zelenin.snake.LoseController">
    <children>
-      <Pane prefHeight="100.0" prefWidth="200.0">
+      <Pane layoutY="1.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="againButton" layoutX="53.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#restartGame" prefHeight="35.0" prefWidth="94.0" text="Try again" />
-            <TextField alignment="CENTER" layoutX="25.0" layoutY="14.0" text="Sorry! You've lost! " />
+            <Button fx:id="againButton" contentDisplay="CENTER" layoutX="13.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#restartGame" prefHeight="25.0" prefWidth="73.0" text="Try again" />
+            <TextField alignment="CENTER" layoutX="38.0" layoutY="16.0" prefHeight="21.0" prefWidth="121.0" text="Sorry! You've lost! " />
+            <Button fx:id="againButton1" contentDisplay="CENTER" layoutX="114.0" layoutY="60.0" mnemonicParsing="false" onAction="#quitGame" onMouseClicked="#restartGame" prefHeight="25.0" prefWidth="73.0" text="Quit game" />
          </children>
       </Pane>
    </children>

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -17,7 +16,7 @@
                 <Menu mnemonicParsing="false" text="Game">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#restart" text="Restart" />
-                     <MenuItem mnemonicParsing="false" text="Pause" />
+                     <MenuItem mnemonicParsing="false" onAction="#pause" text="Pause" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -41,11 +40,7 @@
                </Menu>
             </menus>
           </MenuBar>
-         <ImageView fx:id="myImageView" fitHeight="600.0" fitWidth="600.0" pickOnBounds="true">
-            <image>
-               <Image url="@images/lion.jpg" />
-            </image>
-         </ImageView>
+         <ImageView fx:id="myImageView" fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" />
       </children>
    </VBox>
     <Canvas fx:id="myCanvas" height="600.0" pickOnBounds="true" translateY="25.0" width="600.0" />

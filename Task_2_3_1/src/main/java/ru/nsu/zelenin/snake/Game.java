@@ -17,31 +17,34 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Random;
+
 public class Game extends Application {
     private final int SQUARE_SIZE = 30;
 
     private int ROWS;
     private int COLUMNS;
 
+    private static boolean isPaused = false;
+    private static int imgId = 0;
+    private static int sndId = 0;
+    private static final Stage loseStage = new Stage();
+    private static Stage stage;
     private static Food food;
     private static Timeline timeline;
     private static Snake snake;
+    private static MainController myController;
     private static final Score score = new Score();
     private static final BooleanProperty gameOver = new SimpleBooleanProperty(false);
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        snake = initializeSnake();
-
-        Sound shaman = new Sound("sounds/timon & pumba.mp3");
-        shaman.playStuff();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         AnchorPane root = loader.load();
-        MainController myController = loader.getController();
-        myController.setCurrentSound(shaman);
+        myController = loader.getController();
+        myController.getCurrentSound().playStuff();
         myController.setGame(this);
-        myController.setStage(primaryStage);
         Canvas canvas = myController.getMyCanvas();
         int WIDTH = (int) canvas.getWidth();
         int HEIGHT = (int) canvas.getHeight();
@@ -49,26 +52,29 @@ public class Game extends Application {
         ROWS = HEIGHT / SQUARE_SIZE;
         COLUMNS = WIDTH / SQUARE_SIZE;
 
+        stage = primaryStage;
+        snake = new Snake(ROWS, COLUMNS);
+        Game.initializeSnake(ROWS, COLUMNS);
+
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Snake");
 
+        scene.setOnKeyPressed(Keys.getKeys());
         food = Food.newFood(ROWS, COLUMNS, snake);
 
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(100),
-                e -> snake.move(canvas, SQUARE_SIZE, food, myController)));
+                event -> snake.show(canvas, SQUARE_SIZE, food, myController)));
         timeline.setCycleCount(Animation.INDEFINITE);
-
-        scene.setOnKeyPressed(Keys.getKeys(snake, timeline));
 
         gameOver.addListener(((observable, oldValue, newValue) -> {
             if (newValue) {
                 timeline.stop();
-                shaman.stopStuff();
-                Lose lost = new Lose();
+                myController.getCurrentSound().stopStuff();
                 try {
-                    lost.start(new Stage());
+                    Lose lost = new Lose(this, loseStage);
+                    lost.start(loseStage);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -81,13 +87,14 @@ public class Game extends Application {
 
     }
 
-    public Snake initializeSnake() {
-        Snake snake = new Snake(ROWS, COLUMNS);
+    public static void initializeSnake(int r, int c) {
+        snake.clear();
+        snake.setHead(r, c);
+        snake.setCurrentDirection(Direction.LEFT);
         var list = snake.getSnake();
         snake.addPoint(list.get(0).x + 1, list.get(0).y);
         snake.addPoint(list.get(0).x + 2, list.get(0).y);
         snake.addPoint(list.get(0).x + 3, list.get(0).y);
-        return snake;
     }
 
     public static Score getScore() {
@@ -98,8 +105,8 @@ public class Game extends Application {
         Game.food = food;
     }
 
-    public static void setGameOver() {
-        Game.gameOver.set(true);
+    public static void setGameOver(boolean var) {
+        Game.gameOver.set(var);
     }
 
     public static void main(String[] args) {
@@ -118,4 +125,43 @@ public class Game extends Application {
         Game.snake = snake;
     }
 
+    public Stage getStage() {
+        return Game.stage;
+    }
+
+    public static void setSndId(int sndId) {
+        Game.sndId = sndId;
+    }
+
+    public static void setImgId(int imgId) {
+        Game.imgId = imgId;
+    }
+
+    public static int getImgId() {
+        return Game.imgId;
+    }
+
+    public static int getSndId() {
+        return Game.sndId;
+    }
+
+    public static boolean isPaused() {
+        return Game.isPaused;
+    }
+
+    public static void setIsPaused(boolean var) {
+        Game.isPaused = var;
+    }
+
+    public int getROWS() {
+        return ROWS;
+    }
+
+    public int getCOLUMNS() {
+        return COLUMNS;
+    }
+
+    public static MainController getMyController() {
+        return Game.myController;
+    }
 }

@@ -48,9 +48,9 @@ public class Snake {
     }
 
     public void move(Canvas canvas, int size, Food food, MainController myController) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
         int rows = (int) (canvas.getWidth() / size);
         int columns = (int) (canvas.getHeight() / size);
+
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
@@ -63,6 +63,17 @@ public class Snake {
             case RIGHT -> moveRight(columns);
         }
 
+    }
+
+    public void show(Canvas canvas, int size, Food food, MainController myController) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        int rows = (int) (canvas.getWidth() / size);
+        int columns = (int) (canvas.getHeight() / size);
+
+        if (!Game.isPaused()) {
+            this.move(canvas, size, food, myController);
+        }
+
         myController.setMyImageView(canvas);
         Coloring.drawBackground(size, rows, columns, gc);
         Coloring.drawSnake(gc, size, this);
@@ -71,7 +82,6 @@ public class Snake {
         killYourself();
         Game.getScore().printScore(gc);
     }
-
     public void eatFood(Food food, int rows, int columns) {
         if (head.x == food.getPlace().x
                 && head.y == food.getPlace().y) {
@@ -85,7 +95,7 @@ public class Snake {
     public void killYourself() {
         for (int i = 1; i < snake.size(); ++i) {
             if (head.x == snake.get(i).x && head.y == snake.get(i).y) {
-                Game.setGameOver();
+                Game.setGameOver(true);
                 break;
             }
         }
@@ -93,6 +103,11 @@ public class Snake {
 
     public List<Point> getSnake() {
         return snake;
+    }
+
+    public void clear() {
+        snake.clear();
+        snake.add(head);
     }
 
     public void addPoint(int x, int y) {
@@ -105,6 +120,11 @@ public class Snake {
 
     public Direction getCurrentDirection() {
         return currentDirection;
+    }
+
+    public void setHead(int r, int c) {
+        head.x = (r - 1) / 2;
+        head.y = (c - 1) / 2;
     }
 
 }

@@ -8,7 +8,8 @@ import javafx.scene.input.KeyEvent;
 
 public class Keys {
 
-    public static EventHandler<KeyEvent> getKeys(Snake snake, Timeline timeline) {
+    public static EventHandler<KeyEvent> getKeys() {
+        Snake snake = Game.getSnake();
         return new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -35,11 +36,7 @@ public class Keys {
                         }
                     }
                     case SPACE -> {
-                        if (timeline.getStatus() == Animation.Status.PAUSED) {
-                            timeline.play();
-                        } else if (timeline.getStatus() == Animation.Status.RUNNING) {
-                            timeline.pause();
-                        }
+                        Game.setIsPaused(!Game.isPaused());
                     }
                 }
             }

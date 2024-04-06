@@ -1,5 +1,6 @@
 package ru.nsu.zelenin.snake;
 
+import javafx.animation.Animation;
 import javafx.fxml.FXML;
 
 import javafx.scene.canvas.Canvas;
@@ -11,19 +12,20 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class MainController {
+    private Game game;
 
-    private int imageIdx = 0;
-    private int soundIdx = 0;
-    private Image[] images = new Image[] {
+    private int imageIdx = Game.getImgId();
+    private int soundIdx = Game.getSndId();
+    private final Image[] images = new Image[] {
             new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/lion.jpg"))),
             new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/gf.jpeg"))),
             new Image(Objects.requireNonNull(getClass().
                     getResourceAsStream("images/phineas.jpg"))),
             new Image(Objects.requireNonNull(getClass().
-                    getResourceAsStream("images/invincible_s5.jpg"))),
+                    getResourceAsStream("images/apapa.jpg"))),
     };
 
-    private String[] sounds = new String[] {
+    private final String[] sounds = new String[] {
             "sounds/timon & pumba.mp3",
             "sounds/chillout.mp3",
             "sounds/deceptacon.mp3",
@@ -31,8 +33,6 @@ public class MainController {
             "sounds/freestyle.mp3"
     };
 
-    private Game game;
-    private Stage primaryStage;
     private Sound currentSound = new Sound(sounds[soundIdx]);
     @FXML
     private Canvas myCanvas = new Canvas();
@@ -60,6 +60,7 @@ public class MainController {
             imageIdx = -1;
         }
         currentImage = images[++imageIdx];
+        Game.setImgId(imageIdx);
     }
 
     @FXML
@@ -68,6 +69,7 @@ public class MainController {
             imageIdx = images.length;
         }
         currentImage = images[--imageIdx];
+        Game.setImgId(imageIdx);
     }
 
     @FXML
@@ -82,10 +84,6 @@ public class MainController {
         }
     }
 
-    public void setCurrentSound(Sound sound) {
-        currentSound = sound;
-    }
-
     @FXML
     public void playNext() {
         if (soundIdx == sounds.length - 1) {
@@ -94,6 +92,7 @@ public class MainController {
         stopSound();
         currentSound.setPathname(sounds[++soundIdx]);
         playSound();
+        Game.setSndId(soundIdx);
     }
 
     @FXML
@@ -104,26 +103,35 @@ public class MainController {
         stopSound();
         currentSound.setPathname(sounds[--soundIdx]);
         playSound();
+        Game.setSndId(soundIdx);
     }
 
     @FXML
     public void restart() {
-        try {
-            currentSound.stopStuff();
-            Game.getTimeline().stop();
-            Game.getScore().clearScore();
-            game.stop();
-            game.start(primaryStage);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        if (Game.getTimeline().getStatus() == Animation.Status.STOPPED) {
+            Game.getTimeline().play();
+            Game.setGameOver(false);
         }
+        currentSound.stopStuff();
+        int r = game.getROWS();
+        int c = game.getCOLUMNS();
+        Game.getScore().clearScore();
+        Game.setFood(Food.newFood(r, c, Game.getSnake()));
+        Game.initializeSnake(r, c);
+        currentSound.playStuff();
+    }
+
+    @FXML
+    public void pause() {
+        Game.setIsPaused(!Game.isPaused());
     }
 
     public void setGame(Game game) {
         this.game = game;
     }
 
-    public void setStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+
+    public Sound getCurrentSound() {
+        return currentSound;
     }
 }
