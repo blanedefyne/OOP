@@ -18,18 +18,20 @@ public class Keys {
     public static EventHandler<KeyEvent> getKeys() {
         return event -> {
             KeyCode code = event.getCode();
-                switch (code) {
-                    case RIGHT ->
-                        currDirection = Direction.RIGHT;
-                    case LEFT ->
-                        currDirection = Direction.LEFT;
-                    case UP ->
-                        currDirection = Direction.UP;
-                    case DOWN ->
-                        currDirection = Direction.DOWN;
-                    case SPACE ->
-                        Game.setIsPaused(!Game.isPaused());
+            switch (code) {
+                case RIGHT ->
+                    currDirection = Direction.RIGHT;
+                case LEFT ->
+                    currDirection = Direction.LEFT;
+                case UP ->
+                    currDirection = Direction.UP;
+                case DOWN ->
+                    currDirection = Direction.DOWN;
+                case SPACE ->
+                    Game.setIsPaused(!Game.isPaused());
+                default -> {
                 }
+            }
         };
     }
 

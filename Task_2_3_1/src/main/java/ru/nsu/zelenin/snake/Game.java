@@ -40,14 +40,14 @@ public class Game extends Application {
     private static final BooleanProperty gameOver = new SimpleBooleanProperty(false);
 
     /**
-     * Start() method.
-     *
-     * @param primaryStage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
-     * @throws Exception
-     */
+    * Start() method.
+    *
+    * @param primaryStage the primary stage for this application, onto which
+    * the application scene can be set.
+    * Applications may create other stages, if needed, but they will not be
+    * primary stages.
+    * @throws Exception - exception
+    */
     @Override
     public void start(Stage primaryStage) throws Exception {
 

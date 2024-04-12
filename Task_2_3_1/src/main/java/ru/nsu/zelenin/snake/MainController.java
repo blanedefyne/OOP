@@ -1,17 +1,17 @@
 package ru.nsu.zelenin.snake;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+
 
 /**
  * Class-controller for a Game class.
