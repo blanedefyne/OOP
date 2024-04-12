@@ -14,6 +14,12 @@ public class Snake {
     private Direction currentDirection;
     private final Point head;
 
+    /**
+     * Simple constructor.
+     *
+     * @param c - columns
+     * @param r - rows
+     */
     public Snake(int c, int r) {
         head = new Point((c - 1) / 2, (r - 1) / 2);
         snake.add(head);
@@ -43,6 +49,7 @@ public class Snake {
             head.x = columns - 1;
         }
     }
+
     /**
      * Method moves head up.
      *
@@ -87,6 +94,7 @@ public class Snake {
             case DOWN -> moveDown(rows);
             case LEFT -> moveLeft(columns);
             case RIGHT -> moveRight(columns);
+            default -> {}
         }
 
     }
@@ -99,8 +107,6 @@ public class Snake {
     public void show(Game game) {
         Canvas canvas = Game.getMyController().getMyCanvas();
         int size = game.getSQUARE_SIZE();
-        Food food = Game.getFood();
-        GraphicsContext gc = canvas.getGraphicsContext2D();
         int rows = (int) (canvas.getHeight() / size);
         int columns = (int) (canvas.getWidth() / size);
 
@@ -109,9 +115,11 @@ public class Snake {
         if (!Game.isPaused()) {
             this.move(canvas, size);
         }
-
+        
         MainController myController = Game.getMyController();
         myController.setMyImageView(canvas);
+        Food food = Game.getFood();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
         Coloring.drawBackground(size, rows, columns, gc);
         Coloring.drawFood(gc, food, size);
         Coloring.drawSnake(gc, size, this);
@@ -124,7 +132,7 @@ public class Snake {
      * Method for eating food.
      * It increases snakes' length, updates score and increases speed
      *
-     * @param game
+     * @param game - our game
      */
     public void eatFood(Game game) {
         Canvas canvas = Game.getMyController().getMyCanvas();
