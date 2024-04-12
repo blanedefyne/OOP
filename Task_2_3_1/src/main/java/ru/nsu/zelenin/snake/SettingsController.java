@@ -67,7 +67,7 @@ public class SettingsController {
      */
     @FXML
     public void easyDiff() {
-        difficulty = DIFF.EASY;
+        difficulty = Difficulty.EASY;
         diffString = "Easy";
         myDifficulty.setText(diffString);
     }
@@ -77,7 +77,7 @@ public class SettingsController {
      */
     @FXML
     public void mediumDiff() {
-        difficulty = DIFF.MEDIUM;
+        difficulty = Difficulty.MEDIUM;
         diffString = "Medium";
         myDifficulty.setText(diffString);
     }
@@ -87,7 +87,7 @@ public class SettingsController {
      */
     @FXML
     public void hardDiff() {
-        difficulty = DIFF.HARD;
+        difficulty = Difficulty.HARD;
         diffString = "Hard";
         myDifficulty.setText(diffString);
 
