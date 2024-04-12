@@ -35,13 +35,13 @@ public class MainController {
      * Also, it sets current image and sound
      */
     public void initialize() {
-        String[] iFileNames = Objects.requireNonNull(imagesFolder.list());
-        String[] sFileNames = Objects.requireNonNull(soundsFolder.list());
-        for (var file : iFileNames) {
+        String[] imageFileNames = Objects.requireNonNull(imagesFolder.list());
+        String[] soundFileNames = Objects.requireNonNull(soundsFolder.list());
+        for (var file : imageFileNames) {
             images.add(new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream("images/" + file))));
         }
-        for (var file : sFileNames) {
+        for (var file : soundFileNames) {
             sounds.add("sounds/" + file);
         }
         currentSound = new Sound(sounds.get(soundIdx));
@@ -235,6 +235,7 @@ public class MainController {
         stopSound();
         playSound();
     }
+
     /**
      * Simple setter.
      *

@@ -1,10 +1,10 @@
 package ru.nsu.zelenin.snake;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * Class for representing snake, its movement and displaying.
