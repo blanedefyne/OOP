@@ -27,8 +27,8 @@ public class Game extends Application {
 
     private static double speed = 100;
     private static boolean isPaused = false;
-    private static int imgId;
-    private static int sndId;
+    private static int imgId = 5;
+    private static int sndId = 5;
     private final Stage loseStage = new Stage();
     private final Stage winStage = new Stage();
     private static Stage stage;
@@ -53,6 +53,7 @@ public class Game extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         VBox root = loader.load();
         Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         myController = loader.getController();
         myController.initialize();
         myController.getCurrentSound().playStuff();
@@ -67,7 +68,6 @@ public class Game extends Application {
         snake = new Snake(columns, rows);
         initializeSnake(columns, rows);
 
-        primaryStage.setScene(scene);
         primaryStage.setTitle("Snake");
         primaryStage.getIcons().add(
                 new Image(Objects.requireNonNull(
