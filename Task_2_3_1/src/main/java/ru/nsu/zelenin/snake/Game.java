@@ -1,6 +1,5 @@
 package ru.nsu.zelenin.snake;
 
-
 import java.util.Objects;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -20,10 +19,10 @@ import javafx.util.Duration;
  * Class for running snake application.
  */
 public class Game extends Application {
-    private int SQUARE_SIZE = 30;
-    private int ROWS = 20;
-    private int COLUMNS = 20;
-    private int GOAL_SCORE = 30;
+    private int size = 30;
+    private int rows = 20;
+    private int columns = 20;
+    private int goalScore = 30;
     private static final Score score = new Score();
 
     private static double speed = 100;
@@ -58,14 +57,14 @@ public class Game extends Application {
         myController.getCurrentSound().playStuff();
         myController.setGame(this);
         Canvas canvas = myController.getMyCanvas();
-        int WIDTH = COLUMNS * SQUARE_SIZE;
-        int HEIGHT = ROWS * SQUARE_SIZE;
-        canvas.setWidth(WIDTH);
-        canvas.setHeight(HEIGHT);
+        int width = columns * size;
+        int height = rows * size;
+        canvas.setWidth(width);
+        canvas.setHeight(height);
 
         stage = primaryStage;
-        snake = new Snake(COLUMNS, ROWS);
-        initializeSnake(COLUMNS, ROWS);
+        snake = new Snake(columns, rows);
+        initializeSnake(columns, rows);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -75,7 +74,7 @@ public class Game extends Application {
                         getClass().getResourceAsStream("icons/snake.png"))));
 
         scene.setOnKeyPressed(Keys.getKeys());
-        food = Food.newFood(ROWS, COLUMNS, snake);
+        food = Food.newFood(rows, columns, snake);
 
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(speed),
@@ -98,7 +97,7 @@ public class Game extends Application {
         }));
 
         score.getScore().addListener((observable, oldValue, newValue) -> {
-            if (newValue.intValue() == GOAL_SCORE) {
+            if (newValue.intValue() == goalScore) {
                 timeline.stop();
                 timeline.setCycleCount(0);
                 myController.getCurrentSound().stopStuff();
@@ -254,8 +253,8 @@ public class Game extends Application {
      *
      * @return rows
      */
-    public int getROWS() {
-        return ROWS;
+    public int getRows() {
+        return rows;
     }
 
     /**
@@ -263,17 +262,17 @@ public class Game extends Application {
      *
      * @return columns
      */
-    public int getCOLUMNS() {
-        return COLUMNS;
+    public int getColumns() {
+        return columns;
     }
 
     /**
      * Simple setter.
      *
-     * @param SQUARE_SIZE - new size of a square
+     * @param size - new size of a square
      */
-    public void setSQUARE_SIZE(int SQUARE_SIZE) {
-        this.SQUARE_SIZE = SQUARE_SIZE;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     /**
@@ -300,7 +299,6 @@ public class Game extends Application {
         timeline.play();
     }
 
-
     /**
      * Simple getter.
      *
@@ -313,19 +311,19 @@ public class Game extends Application {
     /**
      * Simple setter.
      *
-     * @param ROWS - new rows
+     * @param rows - new rows
      */
-    public void setROWS(int ROWS) {
-        this.ROWS = ROWS;
+    public void setRows(int rows) {
+        this.rows = rows;
     }
 
     /**
      * Simple setter.
      *
-     * @param COLUMNS - new columns
+     * @param columns - new columns
      */
-    public void setCOLUMNS(int COLUMNS) {
-        this.COLUMNS = COLUMNS;
+    public void setColumns(int columns) {
+        this.columns = columns;
     }
 
     /**
@@ -333,8 +331,8 @@ public class Game extends Application {
      *
      * @return square size
      */
-    public int getSQUARE_SIZE() {
-        return this.SQUARE_SIZE;
+    public int getSize() {
+        return this.size;
     }
 
     /**
@@ -342,17 +340,17 @@ public class Game extends Application {
      *
      * @return goal score
      */
-    public int getGOAL_SCORE() {
-        return this.GOAL_SCORE;
+    public int getGoalScore() {
+        return this.goalScore;
     }
 
     /**
      * Simple setter.
      *
-     * @param GOAL_SCORE - new score goal
+     * @param goalScore - new score goal
      */
-    public void setGOAL_SCORE(int GOAL_SCORE) {
-        this.GOAL_SCORE = GOAL_SCORE;
+    public void setGoalScore(int goalScore) {
+        this.goalScore = goalScore;
     }
 
     /**

@@ -27,8 +27,8 @@ public class LoseController {
         if (!currSound.getSound().isPlaying()) {
             currSound.playStuff();
         }
-        int r = game.getROWS();
-        int c = game.getCOLUMNS();
+        int r = game.getRows();
+        int c = game.getColumns();
         Game.updateSpeed(Game.getSpeed());
         Game.getScore().clearScore();
         Game.setFood(Food.newFood(c, r, Game.getSnake()));

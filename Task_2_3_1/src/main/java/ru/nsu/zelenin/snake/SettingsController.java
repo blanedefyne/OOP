@@ -24,7 +24,7 @@ public class SettingsController {
      */
     public void showData() {
         myDifficulty.setText(diffString);
-        int goal = game.getGOAL_SCORE();
+        int goal = game.getGoalScore();
         myGoal.setText(String.valueOf(goal));
     }
 
@@ -54,7 +54,7 @@ public class SettingsController {
                 Game.updateSpeed(70);
             }
         }
-        game.setGOAL_SCORE(newGoal);
+        game.setGoalScore(newGoal);
         stage.close();
         Game.getMyController().restart();
     }

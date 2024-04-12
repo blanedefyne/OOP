@@ -20,7 +20,7 @@ public class Score {
     public void printScore(Game game) {
         GraphicsContext gc = Game.getMyController().getMyCanvas().getGraphicsContext2D();
         gc.setFill(Color.WHITE);
-        int size = game.getSQUARE_SIZE();
+        int size = game.getSize();
         gc.setFont(new Font(size * 0.67));
         gc.fillText("SCORE : " + score.get(), size * 0.2, size * 0.67);
     }

@@ -107,7 +107,7 @@ public class Snake {
      */
     public void show(Game game) {
         Canvas canvas = Game.getMyController().getMyCanvas();
-        int size = game.getSQUARE_SIZE();
+        int size = game.getSize();
 
         controlTheMovement();
 
@@ -137,7 +137,7 @@ public class Snake {
      */
     public void eatFood(Game game) {
         Canvas canvas = Game.getMyController().getMyCanvas();
-        int size = game.getSQUARE_SIZE();
+        int size = game.getSize();
         Food food = Game.getFood();
         int rows = (int) (canvas.getHeight() / size);
         int columns = (int) (canvas.getWidth() / size);
