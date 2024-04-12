@@ -1,17 +1,18 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.awt.Point;
 import org.junit.jupiter.api.Test;
 import ru.nsu.zelenin.snake.Food;
 import ru.nsu.zelenin.snake.Score;
 import ru.nsu.zelenin.snake.Snake;
 import ru.nsu.zelenin.snake.Sound;
 
-import java.awt.Point;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * Class for testing ... something?
+ */
 public class SnakeTest {
-
     @Test
     public void testSnakeHead() {
         Snake snake = new Snake(20, 20);
@@ -53,11 +54,11 @@ public class SnakeTest {
 
     @Test
     public void clearSnake() {
-       Snake snake = new Snake(130, 145);
-       snake.addPoint(new Point(64, 73));
-       snake.addPoint(new Point(64, 74));
-       snake.addPoint(new Point(64, 75));
-       snake.clear();
+        Snake snake = new Snake(130, 145);
+        snake.addPoint(new Point(64, 73));
+        snake.addPoint(new Point(64, 74));
+        snake.addPoint(new Point(64, 75));
+        snake.clear();
         assertEquals(1, snake.getSnake().size());
     }
 
