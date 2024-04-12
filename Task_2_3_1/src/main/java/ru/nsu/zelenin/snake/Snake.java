@@ -115,7 +115,7 @@ public class Snake {
         if (!Game.isPaused()) {
             this.move(canvas, size);
         }
-        
+
         MainController myController = Game.getMyController();
         myController.setMyImageView(canvas);
         Food food = Game.getFood();
