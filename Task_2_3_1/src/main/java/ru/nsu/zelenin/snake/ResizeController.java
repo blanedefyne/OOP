@@ -76,6 +76,7 @@ public class ResizeController {
             game.setSize(newSize);
             stage.close();
         } catch (NumberFormatException ignored) {
+            return;
         }
 
     }

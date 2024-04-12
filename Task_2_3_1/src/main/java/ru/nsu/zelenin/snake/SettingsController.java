@@ -66,7 +66,7 @@ public class SettingsController {
             stage.close();
             Game.getMyController().restart();
         } catch (NumberFormatException ignored) {
-
+            return;
         }
     }
 
