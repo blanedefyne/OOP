@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ru.nsu.zelenin.snake.MainController">
+    <MenuBar prefHeight="25.0">
+        <Menu mnemonicParsing="false" text="Game">
+            <MenuItem mnemonicParsing="false" onAction="#restart" text="Restart" />
+            <MenuItem mnemonicParsing="false" onAction="#pause" text="Pause" />
+            <MenuItem mnemonicParsing="false" onAction="#openSettings" text="Settings" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+            <MenuItem fx:id="nextPic" mnemonicParsing="false" onAction="#nextPic" text="NextPic" />
+            <MenuItem mnemonicParsing="false" onAction="#prevPic" text="PrevPic" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="View">
+            <MenuItem mnemonicParsing="false" onAction="#changeSize" text="Resize" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Music">
+            <MenuItem mnemonicParsing="false" onAction="#playSound" text="On" />
+            <MenuItem mnemonicParsing="false" onAction="#stopSound" text="Off" />
+            <MenuItem mnemonicParsing="false" onAction="#playNext" text="Next" />
+            <MenuItem mnemonicParsing="false" onAction="#playPrev" text="Previous" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Combo">
+            <MenuItem mnemonicParsing="false" onAction="#nextCombo" text="Next"/>
+            <MenuItem mnemonicParsing="false" onAction="#prevCombo" text="Previous"/>
+        </Menu>
+    </MenuBar>
+    <HBox style="-fx-background-color: #1c1217;" VBox.vgrow="ALWAYS" />
+    <HBox prefHeight="100.0" prefWidth="200.0">
+        <HBox style="-fx-background-color: #1c1217;" HBox.hgrow="ALWAYS" />
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox style="-fx-background-color: #1c1217;" VBox.vgrow="ALWAYS" />
+            <AnchorPane VBox.vgrow="ALWAYS">
+                <ImageView fx:id="myImageView" fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" />
+                <Canvas fx:id="myCanvas" height="600.0" pickOnBounds="true" width="600.0" />
+            </AnchorPane>
+            <VBox style="-fx-background-color: #1c1217;" VBox.vgrow="ALWAYS" />
+        </VBox>
+        <HBox style="-fx-background-color: #1c1217;" HBox.hgrow="ALWAYS" />
+    </HBox>
+    <HBox style="-fx-background-color: #1c1217;" VBox.vgrow="ALWAYS" />
+</VBox>

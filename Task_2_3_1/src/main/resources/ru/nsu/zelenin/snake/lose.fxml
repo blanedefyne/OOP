@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.nsu.zelenin.snake.LoseController">
+   <Pane layoutY="1.0" prefHeight="100.0" prefWidth="200.0">
+      <Button contentDisplay="CENTER" layoutX="13.0" layoutY="60.0" mnemonicParsing="false"
+              onMouseClicked="#restartGame" prefHeight="25.0" prefWidth="73.0" text="Try again"/>
+      <TextField alignment="CENTER" layoutX="38.0" layoutY="16.0" prefHeight="21.0" prefWidth="121.0"
+                 text="Sorry! You've lost! "/>
+      <Button contentDisplay="CENTER" layoutX="114.0" layoutY="60.0" mnemonicParsing="false"
+              onAction="#quitGame" onMouseClicked="#restartGame" prefHeight="25.0" prefWidth="73.0"
+              text="Quit game"/>
+   </Pane>
+</AnchorPane>
