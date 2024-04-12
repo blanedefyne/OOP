@@ -19,21 +19,16 @@ public class Keys {
         return event -> {
             KeyCode code = event.getCode();
                 switch (code) {
-                    case RIGHT -> {
+                    case RIGHT ->
                         currDirection = Direction.RIGHT;
-                    }
-                    case LEFT -> {
+                    case LEFT ->
                         currDirection = Direction.LEFT;
-                    }
-                    case UP -> {
+                    case UP ->
                         currDirection = Direction.UP;
-                    }
-                    case DOWN -> {
+                    case DOWN ->
                         currDirection = Direction.DOWN;
-                    }
-                    case SPACE -> {
+                    case SPACE ->
                         Game.setIsPaused(!Game.isPaused());
-                    }
                 }
         };
     }
