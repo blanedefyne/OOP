@@ -9,6 +9,7 @@ import javafx.stage.Stage;
  * Class-controller for settings application.
  */
 public class SettingsController {
+    private int maxScore;
     private Game game;
     private Stage stage;
     private static Difficulty difficulty = Difficulty.MEDIUM;
@@ -42,24 +43,31 @@ public class SettingsController {
      */
     @FXML
     public void saveSettings() {
-        int newGoal = Integer.parseInt(myGoal.getText());
-        switch (difficulty) {
-            case EASY -> {
-                Game.updateSpeed(130);
+        try {
+            int newGoal = Integer.parseInt(myGoal.getText());
+            if (newGoal >= maxScore) {
+                return;
             }
-            case MEDIUM -> {
-                Game.updateSpeed(100);
-            }
-            case HARD -> {
-                Game.updateSpeed(70);
-            }
-            default -> {
+            switch (difficulty) {
+                case EASY -> {
+                    Game.updateSpeed(130);
+                }
+                case MEDIUM -> {
+                    Game.updateSpeed(100);
+                }
+                case HARD -> {
+                    Game.updateSpeed(70);
+                }
+                default -> {
 
+                }
             }
+            game.setGoalScore(newGoal);
+            stage.close();
+            Game.getMyController().restart();
+        } catch (NumberFormatException ignored) {
+
         }
-        game.setGoalScore(newGoal);
-        stage.close();
-        Game.getMyController().restart();
     }
 
     /**
@@ -100,6 +108,7 @@ public class SettingsController {
      */
     public void setGame(Game game) {
         this.game = game;
+        maxScore = game.getRows() * game.getColumns();
     }
 
     /**

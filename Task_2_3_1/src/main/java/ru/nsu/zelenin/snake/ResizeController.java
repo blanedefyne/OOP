@@ -9,6 +9,8 @@ import javafx.stage.Stage;
  * Class-controller for resizing application.
  */
 public class ResizeController {
+    private final int maxWidth = 1200;
+    private final int maxHeight = 620;
     private Game game;
     private Stage stage;
 
@@ -46,27 +48,36 @@ public class ResizeController {
      */
     @FXML
     public void changeSize() {
-        int newSize = Integer.parseInt(mySize.getText());
-        int newRows = Integer.parseInt(myRows.getText());
-        int newColumns = Integer.parseInt(myColumns.getText());
-        Canvas canvas = Game.getMyController().getMyCanvas();
-        double width = canvas.getWidth();
-        double height = canvas.getHeight();
-        canvas.setHeight(newRows * newSize);
-        canvas.setWidth(newColumns * newSize);
-        boolean biggerWidth = (newColumns * newSize) > width;
-        boolean biggerHeight = (newRows * newSize) > height;
-        if (Game.getFood().place().x > newColumns - 1
-                || Game.getFood().place().y > newRows - 1) {
-            Game.setFood(Food.newFood(newColumns, newRows, Game.getSnake()));
+        try {
+            int newSize = Integer.parseInt(mySize.getText());
+            int newRows = Integer.parseInt(myRows.getText());
+            int newColumns = Integer.parseInt(myColumns.getText());
+            if (newColumns * newSize > maxWidth
+                    || newRows * newSize > maxHeight) {
+                return;
+            }
+            Canvas canvas = Game.getMyController().getMyCanvas();
+            double width = canvas.getWidth();
+            double height = canvas.getHeight();
+            canvas.setHeight(newRows * newSize);
+            canvas.setWidth(newColumns * newSize);
+            boolean biggerWidth = (newColumns * newSize) > width;
+            boolean biggerHeight = (newRows * newSize) > height;
+            if (Game.getFood().place().x > newColumns - 1
+                    || Game.getFood().place().y > newRows - 1) {
+                Game.setFood(Food.newFood(newColumns, newRows, Game.getSnake()));
+            }
+            if (biggerHeight || biggerWidth) {
+                game.getStage().setResizable(true);
+                game.getStage().sizeToScene();
+            }
+            game.setColumns(newColumns);
+            game.setRows(newRows);
+            game.setSize(newSize);
+            stage.close();
+        } catch (NumberFormatException ignored) {
         }
-        if (biggerHeight || biggerWidth) {
-            game.getStage().sizeToScene();
-        }
-        game.setColumns(newColumns);
-        game.setRows(newRows);
-        game.setSize(newSize);
-        stage.close();
+
     }
 
     /**
