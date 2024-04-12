@@ -8,6 +8,9 @@ import javafx.util.Duration;
 
 import java.util.Objects;
 
+/**
+ * Class for playing funny sounds and songs.
+ */
 public class Sound {
     private AudioClip sound;
     private Timeline soundline;
@@ -17,14 +20,15 @@ public class Sound {
         this.pathname = pathname;
     }
 
+    /**
+     * Method plays certain sound infinitely.
+     */
     public void playStuff() {
         sound = new AudioClip(
-                Objects.requireNonNull(Sound.class
-                                .getResource(pathname))
-                        .toExternalForm());
+                Objects.requireNonNull(Sound.class.getResource(pathname)).toExternalForm());
         sound.play();
         soundline = new Timeline(
-                new KeyFrame(Duration.seconds(0.1), e -> {
+                new KeyFrame(Duration.seconds(0.1), event -> {
                     if (!sound.isPlaying()) {
                         sound.play();
                     }
@@ -34,20 +38,37 @@ public class Sound {
         soundline.play();
     }
 
-
+    /**
+     * Method stops the sound.
+     */
     public void stopStuff() {
         this.sound.stop();
         this.soundline.stop();
     }
 
-    public Timeline getSoundline() {
-        return soundline;
+    /**
+     * Method plays sound once.
+     */
+    public void playStuffOnce() {
+        sound = new AudioClip(
+                Objects.requireNonNull(Sound.class.getResource(pathname)).toExternalForm());
+        sound.play();
     }
 
+    /**
+     * Simple getter.
+     *
+     * @return sound
+     */
     public AudioClip getSound() {
         return sound;
     }
 
+    /**
+     * Simple setter.
+     *
+     * @param pathname - path to sound
+     */
     public void setPathname(String pathname) {
         this.pathname = pathname;
     }

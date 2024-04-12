@@ -1,61 +1,71 @@
 package ru.nsu.zelenin.snake;
 
 import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-
+/**
+ * Class-controller for lose application.
+ */
 public class LoseController {
     private Game game;
-    private Stage primaryStage;
-    private Lose lose;
+    private Stage stage;
 
-
+    /**
+     * Method restarts a game.
+     */
     @FXML
     public void restartGame() {
         if (Game.getTimeline().getStatus() == Animation.Status.STOPPED) {
             Game.getTimeline().play();
             Game.setGameOver(false);
         }
-        Game.getMyController().getCurrentSound().stopStuff();
+        if (Game.isPaused()) {
+            Game.setIsPaused(false);
+        }
+        Sound currSound = Game.getMyController().getCurrentSound();
+        if (!currSound.getSound().isPlaying()) {
+            currSound.playStuff();
+        }
         int r = game.getROWS();
         int c = game.getCOLUMNS();
+        Game.updateSpeed(Game.getSpeed());
         Game.getScore().clearScore();
-        Game.setFood(Food.newFood(r, c, Game.getSnake()));
-        Game.initializeSnake(r, c);
-        Game.getMyController().getCurrentSound().playStuff();
-        primaryStage.close();
-        lose.getStage().close();
+        Game.setFood(Food.newFood(c, r, Game.getSnake()));
+        Game.initializeSnake(c, r);
+        stage.close();
     }
 
+    /**
+     * Method exit from game - closes all windows.
+     */
     @FXML
     public void quitGame() {
         try {
             game.getStage().close();
             game.stop();
-            primaryStage.close();
-            lose.stop();
-            lose.getStage().close();
+            stage.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    /**
+     * Simple setter.
+     *
+     * @param stage - stage
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
+    /**
+     * Simple setter.
+     *
+     * @param game - our game
+     */
     public void setGame(Game game) {
         this.game = game;
-    }
-
-    public void setLose(Lose lose) {
-        this.lose = lose;
     }
 }

@@ -1,23 +1,29 @@
 package ru.nsu.zelenin.snake;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Food {
-    private Color color;
-    private Point place;
+/**
+ * Record class for representing food.
+ *
+ * @param color - color of current food
+ * @param place - its coordinates
+ */
+public record Food(Color color, Point place) {
 
-    public Food(Color color, Point place) {
-        this.color = color;
-        this.place = place;
-    }
+    /**
+     * Method generate a new food with its color and place.
+     *
+     * @param columns - columns
+     * @param rows - rows
+     * @param snake - our snake
+     * @return new food
+     */
+    public static Food newFood(int columns, int rows, Snake snake) {
 
-    public static Food newFood(int rows, int columns, Snake snake) {
-
-        Color[] colors = new Color[] {
+        Color[] colors = new Color[]{
                 Color.web("#fAA61A"),
                 Color.web("#f04747"),
                 Color.web("#b05f6d"),
@@ -49,13 +55,5 @@ public class Food {
         }
 
         return new Food(color, new Point(c, r));
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public Point getPlace() {
-        return place;
     }
 }

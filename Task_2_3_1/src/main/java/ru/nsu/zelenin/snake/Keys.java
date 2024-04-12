@@ -1,45 +1,49 @@
 package ru.nsu.zelenin.snake;
 
-import javafx.animation.Animation;
-import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * Class for handling keys pressing.
+ */
 public class Keys {
+    private static Direction currDirection = Direction.LEFT;
 
+    /**
+     * Method sets a direction of snake and pause it when pressing space.
+     *
+     * @return eventHandler
+     */
     public static EventHandler<KeyEvent> getKeys() {
-        Snake snake = Game.getSnake();
-        return new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                KeyCode code = event.getCode();
+        return event -> {
+            KeyCode code = event.getCode();
                 switch (code) {
                     case RIGHT -> {
-                        if (snake.getCurrentDirection() != Direction.LEFT) {
-                            snake.setCurrentDirection(Direction.RIGHT);
-                        }
+                        currDirection = Direction.RIGHT;
                     }
                     case LEFT -> {
-                        if (snake.getCurrentDirection() != Direction.RIGHT) {
-                            snake.setCurrentDirection(Direction.LEFT);
-                        }
+                        currDirection = Direction.LEFT;
                     }
                     case UP -> {
-                        if (snake.getCurrentDirection() != Direction.DOWN) {
-                            snake.setCurrentDirection(Direction.UP);
-                        }
+                        currDirection = Direction.UP;
                     }
                     case DOWN -> {
-                        if (snake.getCurrentDirection() != Direction.UP) {
-                            snake.setCurrentDirection(Direction.DOWN);
-                        }
+                        currDirection = Direction.DOWN;
                     }
                     case SPACE -> {
                         Game.setIsPaused(!Game.isPaused());
                     }
                 }
-            }
         };
+    }
+
+    /**
+     * Simple getter.
+     *
+     * @return direction
+     */
+    public static Direction getCurrDirection() {
+        return Keys.currDirection;
     }
 }
