@@ -1,9 +1,8 @@
 package ru.nsu.zelenin.snake;
 
-import javafx.scene.paint.Color;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.Random;
+import javafx.scene.paint.Color;
 
 /**
  * Record class for representing food.

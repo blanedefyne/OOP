@@ -1,5 +1,7 @@
 package ru.nsu.zelenin.snake;
 
+
+import java.util.Objects;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,8 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.util.Objects;
 
 /**
  * Class for running snake application.

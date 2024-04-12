@@ -1,9 +1,9 @@
 package ru.nsu.zelenin.snake;
 
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.canvas.Canvas;
 
 /**
  * Class-controller for resizing application.
@@ -56,8 +56,8 @@ public class ResizeController {
         canvas.setWidth(newColumns * newSize);
         boolean biggerWidth = (newColumns * newSize) > w;
         boolean biggerHeight = (newRows * newSize) > h;
-        if (Game.getFood().place().x > newColumns - 1 ||
-                Game.getFood().place().y > newRows - 1) {
+        if (Game.getFood().place().x > newColumns - 1
+                || Game.getFood().place().y > newRows - 1) {
             Game.setFood(Food.newFood(newColumns, newRows, Game.getSnake()));
         }
         if (biggerHeight || biggerWidth) {

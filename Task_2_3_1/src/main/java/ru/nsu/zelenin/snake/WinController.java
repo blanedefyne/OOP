@@ -1,4 +1,5 @@
 package ru.nsu.zelenin.snake;
+
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
