@@ -35,10 +35,10 @@ public class Coloring {
      */
     public static void drawSnake(GraphicsContext gc, int size, Snake python) {
         var head = python.getSnake().get(0);
-        var snake = python.getSnake();
         gc.setFill(Color.web("#86B71B"));
         gc.fillRoundRect(head.x * size + 1, head.y * size + 1, size - 2, size - 2, 20, 20);
         gc.setFill(Color.web("#117e07"));
+        var snake = python.getSnake();
         for (int i = 1; i < snake.size(); ++i) {
             gc.fillRoundRect(snake.get(i).x * size + 1, snake.get(i).y * size + 1,
                     size - 2, size - 2, 10, 10);

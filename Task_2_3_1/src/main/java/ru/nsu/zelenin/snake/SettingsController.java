@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class SettingsController {
     private Game game;
     private Stage stage;
-    private static DIFF difficulty = DIFF.MEDIUM;
+    private static Difficulty difficulty = Difficulty.MEDIUM;
     private static String diffString = "Difficulty:";
 
     @FXML
@@ -52,6 +52,9 @@ public class SettingsController {
             }
             case HARD -> {
                 Game.updateSpeed(70);
+            }
+            default -> {
+
             }
         }
         game.setGoalScore(newGoal);
@@ -102,7 +105,7 @@ public class SettingsController {
     /**
      * Simple private enum for difficulty.
      */
-    private enum DIFF {
+    private enum Difficulty {
         EASY, MEDIUM, HARD
     }
 }

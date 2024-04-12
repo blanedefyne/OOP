@@ -31,11 +31,11 @@ public class Settings extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("settings.fxml"));
         AnchorPane root = loader.load();
-        Scene scene = new Scene(root);
         SettingsController settingsController = loader.getController();
         settingsController.setGame(game);
         settingsController.showData();
         settingsController.setStage(primaryStage);
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream("icons/settings.png"))));

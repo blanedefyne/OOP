@@ -51,7 +51,6 @@ public class Game extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-        VBox root = loader.load();
         myController = loader.getController();
         myController.initialize();
         myController.getCurrentSound().playStuff();
@@ -66,6 +65,7 @@ public class Game extends Application {
         snake = new Snake(columns, rows);
         initializeSnake(columns, rows);
 
+        VBox root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Snake");
