@@ -94,7 +94,8 @@ public class Snake {
             case DOWN -> moveDown(rows);
             case LEFT -> moveLeft(columns);
             case RIGHT -> moveRight(columns);
-            default -> {}
+            default -> {
+            }
         }
 
     }
@@ -107,8 +108,6 @@ public class Snake {
     public void show(Game game) {
         Canvas canvas = Game.getMyController().getMyCanvas();
         int size = game.getSQUARE_SIZE();
-        int rows = (int) (canvas.getHeight() / size);
-        int columns = (int) (canvas.getWidth() / size);
 
         controlTheMovement();
 
@@ -120,6 +119,8 @@ public class Snake {
         myController.setMyImageView(canvas);
         Food food = Game.getFood();
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        int rows = (int) (canvas.getHeight() / size);
+        int columns = (int) (canvas.getWidth() / size);
         Coloring.drawBackground(size, rows, columns, gc);
         Coloring.drawFood(gc, food, size);
         Coloring.drawSnake(gc, size, this);
@@ -234,6 +235,9 @@ public class Snake {
                 if (Keys.getCurrDirection() != Direction.UP) {
                     currentDirection = Keys.getCurrDirection();
                 }
+            }
+            default -> {
+
             }
 
         }

@@ -1,12 +1,11 @@
 package ru.nsu.zelenin.snake;
 
+import java.util.Objects;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-
-import java.util.Objects;
 
 /**
  * Class for playing funny sounds and songs.
